@@ -19,7 +19,7 @@ public class HomepageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void checkHomepageElements() {
         loginPage.open()
-                .login(email, password);
+                .login(EMAIL, PASSWORD);
         homepage.isPageOpened();
         homepage.findAdministrationLink();
         softAssert.assertEquals(homepage.getTitle(),

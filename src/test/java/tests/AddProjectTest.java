@@ -24,7 +24,7 @@ public class AddProjectTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void addProjectWithNameOnly() {
         loginPage.open()
-                .login(email, password);
+                .login(EMAIL, PASSWORD);
         addProjectPage.open()
                 .isPageOpened()
                 .fillProjectName(projectNameFirst);
@@ -43,7 +43,7 @@ public class AddProjectTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void addProjectWithVariables() {
         loginPage.open()
-                .login(email, password);
+                .login(EMAIL, PASSWORD);
         addProjectPage.open()
                 .isPageOpened();
         variableStep.createVariable();

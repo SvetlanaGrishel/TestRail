@@ -32,7 +32,7 @@ public class LoginTest extends BaseTest{
     @Severity(SeverityLevel.NORMAL)
     public void loginWithEmptyPassword() {
         loginPage.open();
-        loginPage.login(email, " ");
+        loginPage.login(EMAIL, " ");
         assertEquals(loginPage.getLoginErrorMessageEmptyFields(),
                 "Password is required.",
                 "FAIL loginWithEmptyPassword");
@@ -45,7 +45,7 @@ public class LoginTest extends BaseTest{
     @Severity(SeverityLevel.NORMAL)
     public void loginWithEmptyEmail() {
         loginPage.open();
-        loginPage.login("", password);
+        loginPage.login("", PASSWORD);
         assertEquals(loginPage.getLoginErrorMessageEmptyFields(),
                 "Email/Login is required.",
                 "FAIL loginWithEmptyEmail");
@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest{
     @Severity(SeverityLevel.NORMAL)
     public void loginWithNotValidCredentials() {
         loginPage.open();
-        loginPage.login(notValidEmail, notValidPassword);
+        loginPage.login(NOT_VALID_EMAIL, NOT_VALID_PASSWORD);
         assertEquals(loginPage.getGeneralLoginErrorMessage(),
                 "Email/Login or Password is incorrect. Please try again.",
                 "FAIL loginWithNotValidCredentials");

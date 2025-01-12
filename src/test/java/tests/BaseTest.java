@@ -14,6 +14,7 @@ import org.testng.annotations.*;
 import pages.*;
 import steps.LoginStep;
 import steps.VariableStep;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
@@ -32,10 +33,10 @@ public class BaseTest {
     protected VariableStep variableStep;
 
     //ПЕРЕПИСАТЬ И СКРЫТЬ (!!!)
-    String email = "HIDDEN";
-    String password = "HIDDEN";
-    String notValidEmail = "test@gmail.com";
-    String notValidPassword = "111222";
+    protected String EMAIL = System.getProperty("EMAIL", PropertyReader.getProperty("EMAIL"));
+    protected String PASSWORD = System.getProperty("PASSWORD", PropertyReader.getProperty("PASSWORD"));
+    protected String NOT_VALID_EMAIL = System.getProperty("NOT_VALID_EMAIL", PropertyReader.getProperty("NOT_VALID_EMAIL"));
+    protected String NOT_VALID_PASSWORD = System.getProperty("NOT_VALID_PASSWORD", PropertyReader.getProperty("NOT_VALID_PASSWORD"));
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -45,7 +46,7 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
             //options.addArguments("--headless");
-            //options.addArguments("--disable-notifications");
+            options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions edgeOptions = new EdgeOptions();

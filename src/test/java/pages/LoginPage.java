@@ -7,6 +7,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import utils.PropertyReader;
 
 @Log4j2
 public class LoginPage extends BasePage{
