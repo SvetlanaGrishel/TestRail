@@ -11,9 +11,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import pages.AllProjectsPage;
-import pages.LoginPage;
+import pages.*;
 import steps.LoginStep;
+import steps.VariableStep;
 
 import java.time.Duration;
 
@@ -23,14 +23,15 @@ import static utils.AllureUtils.takeScreenshot;
 public class BaseTest {
 
     protected WebDriver driver;
-    protected AllProjectsPage allProjectsPage;
+    protected Homepage homepage;
     protected LoginPage loginPage;
+    protected ConfigureVariablePage configureVariablePage;
+    protected AddProjectPage addProjectPage;
+    protected ProjectsPage projectsPage;
     protected LoginStep loginStep;
+    protected VariableStep variableStep;
 
-    //String email = System.getProperty("email", PropertyReader.getProperty("email"));
-    //String password = System.getProperty("password", PropertyReader.getProperty("password"));
-
-    //ПЕРЕПИСАТЬ И СКРЫТЬ
+    //ПЕРЕПИСАТЬ И СКРЫТЬ (!!!)
     String email = "HIDDEN";
     String password = "HIDDEN";
     String notValidEmail = "test@gmail.com";
@@ -44,7 +45,7 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
             //options.addArguments("--headless");
-            options.addArguments("--disable-notifications");
+            //options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions edgeOptions = new EdgeOptions();
@@ -59,9 +60,13 @@ public class BaseTest {
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        allProjectsPage = new AllProjectsPage(driver);
+        homepage = new Homepage(driver);
         loginPage = new LoginPage(driver);
         loginStep = new LoginStep(driver);
+        addProjectPage = new AddProjectPage(driver);
+        variableStep = new VariableStep(driver);
+        configureVariablePage = new ConfigureVariablePage(driver);
+        projectsPage = new ProjectsPage(driver);
     }
 
     @Step("Close browser")

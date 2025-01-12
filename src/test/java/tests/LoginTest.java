@@ -18,15 +18,14 @@ public class LoginTest extends BaseTest{
     @Epic("Login module TestRail")
     @Severity(SeverityLevel.CRITICAL)
     public void loginWithValidCredentials() {
-        loginPage.open();
-        loginPage.login(email, password);
+        loginStep.login();
         assertEquals(
-                allProjectsPage.getTitle(),
+                homepage.getTitle(),
                 "All Projects",
                 "Переход на страницу не выполнен");
     }
 
-    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!)
+    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!) + СКРЫТЬ ДАННЫЕ
     @Test(testName = "Log in with empty password", description = "Log in with empty password")
     @Description("Log in with empty password in TestRail")
     @Epic("Login module TestRail")
@@ -39,6 +38,7 @@ public class LoginTest extends BaseTest{
                 "FAIL loginWithEmptyPassword");
     }
 
+    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!) + СКРЫТЬ ДАННЫЕ
     @Test(testName = "Log in with empty email", description = "Log in with empty email")
     @Description("Log in with empty email in TestRail")
     @Epic("Login module TestRail")
@@ -51,6 +51,7 @@ public class LoginTest extends BaseTest{
                 "FAIL loginWithEmptyEmail");
     }
 
+    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!) + СКРЫТЬ ДАННЫЕ
     @Test(testName = "Log in with not valid credentials", description = "Log in with not valid credentials")
     @Description("Log in with not valid credentials in TestRail")
     @Epic("Login module TestRail")

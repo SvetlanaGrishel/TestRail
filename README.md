@@ -1,15 +1,15 @@
 LOGIN:
 1. (**DONE**) Successfully login with valid email and password
-2. Validation during login when email and password are empty
+2. (**REFACTOR**) Validation during login when email and password are empty
 3. (**DONE**) Validation during login when email is empty
 4. (**DONE**) Validation during login when password is empty
 5. (**DONE**) Validation during login when email and password aren't valid
 
 ALL PROJECTS:
-1. Check "All Projects" page
-2. Add new project with name only
-3. Add new project with user variables
-4. Check created project on "All Projects" page
+1. (**DONE**) Check "Homepage" (Dashboard) page
+2. (**DONE**) Add new project with name only
+3. (**DONE**) Add new project with user variables
+4. (**DONE**) Check created project on "All Projects" page
 
 PROJECT:
 1. Edit project

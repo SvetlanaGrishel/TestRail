@@ -18,7 +18,6 @@ public class LoginPage extends BasePage{
     private final By EMPTY_FIELDS_LOGIN_ERROR_MESSAGE = By.xpath("//div[contains(@class, 'loginpage-message')]");
     private final By GENERAL_LOGIN_ERROR_MESSAGE = By.xpath("//div[contains(@class, 'error-text')]");
 
-
     //создаем конструктор
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -46,14 +45,14 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    //логинимся в систему и проверяем, что страница AllProjectsPage открыта
+    //логинимся в систему и проверяем, что страница Homepage открыта
     @Step("Log in to the system with valid credentials: {email} and {password}")
-    public AllProjectsPage login(String email, String password) {
+    public Homepage login(String email, String password) {
         log.info("Log in using credentials '{}' and '{}'", email, password);
         driver.findElement(EMAIL_INPUT).sendKeys(email);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
-        return new AllProjectsPage(driver); //если переходим на другую страницу
+        return new Homepage(driver); //если переходим на другую страницу
     }
 
     @Step("Get the texts of error messages on 'Login' page when one field is empty")
