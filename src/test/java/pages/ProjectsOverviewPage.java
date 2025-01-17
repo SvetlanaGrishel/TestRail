@@ -63,10 +63,8 @@ public class ProjectsOverviewPage extends BasePage {
     @Step("Check message about successfully deleted project")
     public String getMessageForDeletedProject() {
         log.info("Check message about successfully deleted project");
-        return driver.findElement(SUCCESS_MESSAGE_UPDATED_PROJECT).getText();
+        return driver.findElement(SUCCESS_MESSAGE_DELETED_PROJECT).getText();
     }
-
-
 
     @Override
     @Step("Check that 'Projects' page is opened")

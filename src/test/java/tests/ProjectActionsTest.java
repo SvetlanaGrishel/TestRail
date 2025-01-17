@@ -13,12 +13,12 @@ import static org.testng.Assert.assertTrue;
 public class ProjectActionsTest extends BaseTest {
 
     Faker faker = new Faker();
-    String projectNameFirst = "FIRST_project";
-    String projectNameSecond = faker.company().name();
-    String projectNameThird = faker.company().name();
-    String projectNameDeletedProject = "DELETE";
-    String editProjectName = "EDITED_name_";
-    String cancelDeleteProjectName = "Cancel deleting project";
+    public String projectNameFirst = "FIRST_project";
+    public String projectNameSecond = faker.company().name();
+    public String projectNameThird = faker.company().name();
+    public String projectNameDeletedProject = "DELETE";
+    public String editProjectName = "EDITED_name_";
+    public String cancelDeleteProjectName = "Cancel deleting project";
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -31,8 +31,7 @@ public class ProjectActionsTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkCreatingFirstProjectInTestrail() {
-        loginPage.open()
-                .login(EMAIL, PASSWORD);
+        loginStep.loginStep();
         addProjectPage.open()
                 .isPageOpened()
                 .fillProjectName(projectNameFirst);
@@ -51,8 +50,7 @@ public class ProjectActionsTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkAddingProjectWithNameOnly() {
-        loginPage.open()
-                .login(EMAIL, PASSWORD);
+        loginStep.loginStep();
         addProjectPage.open()
                 .isPageOpened()
                 .fillProjectName(projectNameSecond);
@@ -73,8 +71,7 @@ public class ProjectActionsTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Owner("Svetlana Grishel")
     public void checkAddingProjectWithVariables() {
-        loginPage.open()
-                .login(EMAIL, PASSWORD);
+        loginStep.loginStep();
         addProjectPage.open()
                 .isPageOpened();
         variableStep.createVariable();
@@ -97,8 +94,7 @@ public class ProjectActionsTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkEditProjectName() {
-        loginPage.open()
-                .login(EMAIL, PASSWORD);
+        loginStep.loginStep();
         projectsOverviewPage.open()
                 .isPageOpened()
                 .openEditProjectPage();
@@ -117,8 +113,7 @@ public class ProjectActionsTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
     @Owner("Svetlana Grishel")
     public void checkCancelingProjectDeleting() {
-        loginPage.open()
-                .login(EMAIL, PASSWORD);
+        loginStep.loginStep();
         projectsOverviewPage.open()
                 .isPageOpened();
         addProjectPage.open()
@@ -141,8 +136,7 @@ public class ProjectActionsTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkProjectDeleting() {
-        loginPage.open()
-                .login(EMAIL, PASSWORD);
+        loginStep.loginStep();
         projectsOverviewPage.open()
                 .isPageOpened();
         addProjectPage.open()
@@ -157,8 +151,4 @@ public class ProjectActionsTest extends BaseTest {
                 "Successfully deleted the project.",
                 "FAIL editProjectName");
     }
-
 }
-
-
-

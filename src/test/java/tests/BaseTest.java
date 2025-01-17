@@ -33,6 +33,9 @@ public class BaseTest {
     protected LoginStep loginStep;
     protected VariableStep variableStep;
     protected DeleteProjectModal deleteProjectModal;
+    protected ProjectDetailsPage projectDetailsPage;
+    protected AddTestCasePage addTestCasePage;
+    protected TestCaseDetailsPage testCaseDetailsPage;
 
     //ПЕРЕПИСАТЬ И СКРЫТЬ (!!!)
     protected String EMAIL = System.getProperty("EMAIL", PropertyReader.getProperty("EMAIL"));
@@ -71,6 +74,9 @@ public class BaseTest {
         configureVariablePage = new ConfigureVariablePage(driver);
         projectsOverviewPage = new ProjectsOverviewPage(driver);
         deleteProjectModal = new DeleteProjectModal(driver);
+        projectDetailsPage = new ProjectDetailsPage(driver);
+        addTestCasePage = new AddTestCasePage(driver);
+        testCaseDetailsPage = new TestCaseDetailsPage(driver);
     }
 //
 //    @Step("Close browser")

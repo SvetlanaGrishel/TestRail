@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class Picklist {
 
-    private final String PICKLIST_PATTERN = "//label[text() ='%s']/ancestor::div[@class='form-group']/div[1]";
+    private final String PICKLIST_PATTERN = "//div[contains(@class,'column')]/label[normalize-space(text())='%s']//" +
+            "following-sibling::div";
 
     WebDriver driver;
     String label;
@@ -20,6 +21,6 @@ public class Picklist {
     public void select(String option) {
         log.info("Selecting '{}' inside picklist '{}'", option, label);
         driver.findElement(By.xpath(String.format(PICKLIST_PATTERN, label))).click();
-        driver.findElement(By.xpath(String.format(PICKLIST_PATTERN + "//option[text()='%s']", label, option))).click();
+        driver.findElement(By.xpath(String.format(PICKLIST_PATTERN + "//li[contains(text(),'%s')]", label, option))).click();
     }
 }

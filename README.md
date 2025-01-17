@@ -2,7 +2,7 @@ LOGIN:
 1. (**DONE**) Successfully login with valid email and password
 2. (**DONE**) Validation during login when email is empty
 3. (**DONE**) Validation during login when password is empty
-4(**DONE**) Validation during login when email and password aren't valid
+4. (**DONE**) Validation during login when email and password aren't valid
 
 ALL PROJECTS:
 1. (**DONE**) Check "Homepage" (Dashboard) page
@@ -15,7 +15,7 @@ PROJECT:
 2. (**DONE**) Delete project
 3. Add the Milestone
 4. Add Test Run
-5. Add Test Case
+5. (**DONE**) Add Test Case
 
 TEST CASES ACTIONS:
 1. Edit Test Case

@@ -18,6 +18,7 @@ public class AddProjectPage extends BasePage {
     private static final By PROJECT_TAB = By.id("projects-tabs-project");
     private static final By SUCCESS_MESSAGE_CREATED_PROJECT = By.xpath("//*[@id='content-inner']/div[1]");
 
+
     public AddProjectPage(WebDriver driver) {
         super(driver);
     }
@@ -45,6 +46,8 @@ public class AddProjectPage extends BasePage {
         log.info("Check message about successfully created project");
         return driver.findElement(SUCCESS_MESSAGE_CREATED_PROJECT).getText();
     }
+
+
 
     @Override
     @Step("Open 'Add Project' page")
