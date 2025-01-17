@@ -23,24 +23,21 @@ public class AddProjectPage extends BasePage {
     }
 
     @Step("Fill the name of the project")
-    public String fillProjectName(String projectName) {
+    public void fillProjectName(String projectName) {
         log.info("Fill the name of the project");
         driver.findElement(NAME_INPUT).sendKeys(projectName);
-        return projectName;
     }
 
     @Step("Click 'Add Project' button")
-    public Homepage clickAddProjectButton() {
+    public void clickAddProjectButton() {
         log.info("Click 'Add Project' button");
         driver.findElement(ADD_PROJECT_BUTTON).click();
-        return new Homepage(driver);
     }
 
     @Step("Click 'Project' tab")
-    public Homepage clickProjectTab() {
+    public void clickProjectTab() {
         log.info("Click 'Project' tab");
         driver.findElement(PROJECT_TAB).click();
-        return new Homepage(driver);
     }
 
     @Step("Check message about successfully created project")

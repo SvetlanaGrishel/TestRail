@@ -39,7 +39,6 @@ public class ConfigureVariablePage extends BasePage {
         super(driver);
     }
 
-    //перезаписываем метод открытия модалки создания переменной
     @Override
     @Step("Open 'Configure Variable' modal")
     public ConfigureVariablePage open() {
@@ -48,7 +47,6 @@ public class ConfigureVariablePage extends BasePage {
         return this;
     }
 
-    //проверка, что модалка создания переменной открыта
     @Override
     public BasePage isPageOpened() {
         try {
@@ -60,7 +58,6 @@ public class ConfigureVariablePage extends BasePage {
         return this;
     }
 
-    //клик на вкладку 'User Variables'
     @Step("Open 'Variables' tab")
     public void clickTabVariables() {
         log.info("Open 'Variables' tab");
@@ -68,8 +65,6 @@ public class ConfigureVariablePage extends BasePage {
         driver.findElement(By.xpath("//*[@id='addConfig']/p/a")).click();
     }
 
-    //сохранение созданной переменной
-    //остальные шаги вынесены в VariableStep
     @Step("Click 'OK' button to save the variable")
     public ConfigureVariablePage clickOkButton() {
         log.info("Click 'OK' button to save the variable");

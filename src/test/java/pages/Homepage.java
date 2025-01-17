@@ -15,6 +15,8 @@ public class Homepage extends BasePage {
     private static final String ALL_PROJECTS_PAGE_URL = "https://sgtestrail.testrail.io/index.php?/dashboard";
     private static final By ADD_PROJECT_BUTTON = By.id("sidebar-projects-add");
     private static final By ADMINISTRATION_LINK = By.id("navigation-admin");
+    private static final By PROJECT_TITLE_HOMEPAGE_PATTERN =
+            By.xpath("//*[contains(@href, 'index.php?/projects/overview/')]");
 
     public Homepage(WebDriver driver) {
         super(driver);
@@ -38,9 +40,19 @@ public class Homepage extends BasePage {
     @Step("Find 'Add Project' button on 'Homepage'")
     public boolean findAddProjectButton() {
         log.info("Find 'Add Project' button on 'Homepage'");
-        boolean resultFindAddProjectButton = driver.findElement(ADMINISTRATION_LINK).isDisplayed();
+        boolean resultFindAddProjectButton = driver.findElement(ADD_PROJECT_BUTTON).isDisplayed();
         return resultFindAddProjectButton;
     }
+
+//    //ДОДЕЛАТЬ (!!!)
+//    @Step("Open project details page from 'Homepage'")
+//    public EditProjectPage openProjectDetailsPage(String projectTitle) {
+//        log.info("Open project details page from 'Homepage'");
+//        By project = driver.findElement(PROJECT_TITLE_HOMEPAGE_PATTERN, projectTitle));
+//
+//    }
+
+
 
     @Override
     @Step("Check that Homepage page is opened")

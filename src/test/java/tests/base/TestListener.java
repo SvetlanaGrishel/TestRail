@@ -1,4 +1,4 @@
-package tests;
+package tests.base;
 
 import lombok.extern.log4j.Log4j2;
 import org.testng.ITestContext;
@@ -47,7 +47,7 @@ public class TestListener implements ITestListener {
 
     }
 
-    private long getExecutionTime(ITestResult iTestResult) {
+    public long getExecutionTime(ITestResult iTestResult) {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
     }
 }

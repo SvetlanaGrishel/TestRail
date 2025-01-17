@@ -14,6 +14,7 @@ import org.testng.annotations.*;
 import pages.*;
 import steps.LoginStep;
 import steps.VariableStep;
+import tests.base.TestListener;
 import utils.PropertyReader;
 
 import java.time.Duration;
@@ -28,9 +29,10 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected ConfigureVariablePage configureVariablePage;
     protected AddProjectPage addProjectPage;
-    protected ProjectsPage projectsPage;
+    protected ProjectsOverviewPage projectsOverviewPage;
     protected LoginStep loginStep;
     protected VariableStep variableStep;
+    protected DeleteProjectModal deleteProjectModal;
 
     //ПЕРЕПИСАТЬ И СКРЫТЬ (!!!)
     protected String EMAIL = System.getProperty("EMAIL", PropertyReader.getProperty("EMAIL"));
@@ -67,15 +69,16 @@ public class BaseTest {
         addProjectPage = new AddProjectPage(driver);
         variableStep = new VariableStep(driver);
         configureVariablePage = new ConfigureVariablePage(driver);
-        projectsPage = new ProjectsPage(driver);
+        projectsOverviewPage = new ProjectsOverviewPage(driver);
+        deleteProjectModal = new DeleteProjectModal(driver);
     }
-
-    @Step("Close browser")
-    @AfterMethod(alwaysRun = true)
-    public void tearDown(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            takeScreenshot(driver);
-        }
-        driver.quit();
-    }
+//
+//    @Step("Close browser")
+//    @AfterMethod(alwaysRun = true)
+//    public void tearDown(ITestResult result) {
+//        if (ITestResult.FAILURE == result.getStatus()) {
+//            takeScreenshot(driver);
+//        }
+//        driver.quit();
+//    }
 }

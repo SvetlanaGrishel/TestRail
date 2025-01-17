@@ -22,7 +22,7 @@ public class VariableStep {
         log.info("Creating new account, filling information");
         configureVariablePage.clickTabVariables();
         configureVariablePage.fillVariableInformation();
-        configureVariablePage      .clickOkButton();
+        configureVariablePage.clickOkButton();
     }
 
 

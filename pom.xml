@@ -17,6 +17,7 @@
         <selenium.version>4.27.0</selenium.version>
         <assertj.version>3.26.3</assertj.version>
         <aspectj.version>1.9.22.1</aspectj.version>
+        <suite.xmlFile>src/test/resources/SmokeTest.xml</suite.xmlFile>
     </properties>
 
     <dependencyManagement>
@@ -105,9 +106,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
                 <configuration>
-                    <!--                <suiteXmlFiles> -->
-                    <!--                     <suiteXmlFile>${suite.xmlFile}</suiteXmlFile> -->
-                    <!--                 </suiteXmlFiles> -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suite.xmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>

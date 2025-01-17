@@ -7,10 +7,9 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import utils.PropertyReader;
 
 @Log4j2
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     private static final By EMAIL_INPUT = By.id("name");
     private static final By PASSWORD_INPUT = By.id("password");
@@ -19,12 +18,19 @@ public class LoginPage extends BasePage{
     private final By EMPTY_FIELDS_LOGIN_ERROR_MESSAGE = By.xpath("//div[contains(@class, 'loginpage-message')]");
     private final By GENERAL_LOGIN_ERROR_MESSAGE = By.xpath("//div[contains(@class, 'error-text')]");
 
-    //создаем конструктор
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    //перезаписываем методы из BasePage - проверка того, что страница логина открыта
+    @Step("Log in to the system with valid credentials: {email} and {password}")
+    public Homepage login(String email, String password) {
+        log.info("Log in using credentials '{}' and '{}'", email, password);
+        driver.findElement(EMAIL_INPUT).sendKeys(email);
+        driver.findElement(PASSWORD_INPUT).sendKeys(password);
+        driver.findElement(LOGIN_BUTTON).click();
+        return new Homepage(driver);
+    }
+
     @Override
     @Step("Check that 'Login' page is opened")
     public LoginPage isPageOpened() {
@@ -37,23 +43,12 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    //перезаписываем методы из BasePage - открытие страницы логина
     @Override
     @Step("Open 'Login page'")
     public LoginPage open() {
         log.info("Open 'Login' page in TestRail");
         driver.get(BASE_TESTRAIL_URL);
         return this;
-    }
-
-    //логинимся в систему и проверяем, что страница Homepage открыта
-    @Step("Log in to the system with valid credentials: {email} and {password}")
-    public Homepage login(String email, String password) {
-        log.info("Log in using credentials '{}' and '{}'", email, password);
-        driver.findElement(EMAIL_INPUT).sendKeys(email);
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
-        return new Homepage(driver); //если переходим на другую страницу
     }
 
     @Step("Get the texts of error messages on 'Login' page when one field is empty")

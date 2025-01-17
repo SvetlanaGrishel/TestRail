@@ -1,4 +1,4 @@
-package tests;
+package tests.base;
 
 import lombok.extern.log4j.Log4j2;
 import org.testng.IRetryAnalyzer;
@@ -7,8 +7,8 @@ import org.testng.ITestResult;
 @Log4j2
 public class Retry implements IRetryAnalyzer {
 
-    private int attempt = 1;
-    private static final int MAX_RETRY = 3;
+    public int attempt = 1;
+    public static final int MAX_RETRY = 3;
 
     @Override
     public boolean retry(ITestResult iTestResult) {

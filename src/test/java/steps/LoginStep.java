@@ -19,7 +19,7 @@ public class LoginStep {
         loginPage = new LoginPage(driver);
     }
 
-    public void login() {
+    public void loginStep() {
         log.info("Login to the 'TestRail' with valid credentials");
         loginPage.open()
                 .isPageOpened()
