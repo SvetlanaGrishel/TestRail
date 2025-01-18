@@ -11,7 +11,6 @@ public class TestCaseDetailsPage extends BasePage{
     private static final By MESSAGE_ABOUT_ADDED_TEST_CASE = By.xpath("//div[@data-testid='messageSuccessDivBox']");
     private static final By ADD_ANOTHER_LINK = By.xpath("//*[@id='content-inner']/div[1]/a");
 
-
     public TestCaseDetailsPage(WebDriver driver) {
         super(driver);
     }

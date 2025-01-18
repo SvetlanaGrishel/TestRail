@@ -24,6 +24,4 @@ public class VariableStep {
         configureVariablePage.fillVariableInformation();
         configureVariablePage.clickOkButton();
     }
-
-
 }

@@ -35,16 +35,6 @@ public class DeleteProjectModal extends BasePage{
         driver.findElement(CANCEL_BUTTON_DELETE_PROJECT_MODAL).click();
     }
 
-
-
-
-
-
-
-
-
-
-
     @Override
     public BasePage isPageOpened() {
         try {

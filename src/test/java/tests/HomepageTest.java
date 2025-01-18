@@ -1,12 +1,10 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import tests.base.BaseTest;
 
 @Log4j2
 public class HomepageTest extends BaseTest {
@@ -17,6 +15,7 @@ public class HomepageTest extends BaseTest {
     @Description("Check elements on Homepage")
     @Epic("'Homepage' module TestRail")
     @Severity(SeverityLevel.NORMAL)
+    @Owner("Svetlana Grishel")
     public void checkHomepageElements() {
         loginPage.open()
                 .login(EMAIL, PASSWORD);
@@ -29,5 +28,4 @@ public class HomepageTest extends BaseTest {
         softAssert.assertTrue(homepage.findAddProjectButton(), "'Add Project' button not found");
         softAssert.assertAll();
     }
-
 }

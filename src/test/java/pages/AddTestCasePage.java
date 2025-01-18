@@ -21,7 +21,6 @@ public class AddTestCasePage extends BasePage {
     private static final By CANCEL_TEST_CASE_BUTTON = By.xpath("//*[@id='form']/div[2]/a");
     private static final By MESSAGE_ABOUT_REQUIRED_FIELD = By.xpath("//div[text() = 'Field Title is a required field.']");
 
-
     public AddTestCasePage(WebDriver driver) {
         super(driver);
     }

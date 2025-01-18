@@ -26,12 +26,6 @@ public class ConfigureVariablePage extends BasePage {
         driver.findElement(By.id("userFieldName")).sendKeys(faker.lorem().word());
         driver.findElement(By.id("userFieldFallback")).sendKeys(faker.dune().quote());
         driver.findElement(By.id("userFieldType")).sendKeys("String");
-
-//ДОБАВИТЬ ОБЕРТКИ
-//        new Input(driver, "Label").write(variable.getLabelVariable());
-//        new Input(driver, "Description").write(variable.getDescriptionVariable());
-//        new Input(driver, "System Name").write(variable.getSystemNameVariable());
-//        new Picklist(driver, "String").select(variable.getTypeVariable());
         return this;
     }
 
@@ -40,9 +34,9 @@ public class ConfigureVariablePage extends BasePage {
     }
 
     @Override
-    @Step("Open 'Configure Variable' modal")
+    @Step("Open 'Configure UserVariable' modal")
     public ConfigureVariablePage open() {
-        log.info("Open 'Configure Variable' modal");
+        log.info("Open 'Configure UserVariable' modal");
         driver.findElement(ADD_USER_VARIABLE_LINK).click();
         return this;
     }

@@ -1,4 +1,4 @@
-package tests;
+package tests.base;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -9,17 +9,14 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
 import steps.LoginStep;
+import steps.OpenProjectsOverviewStep;
 import steps.VariableStep;
-import tests.base.TestListener;
 import utils.PropertyReader;
 
 import java.time.Duration;
-
-import static utils.AllureUtils.takeScreenshot;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -36,6 +33,7 @@ public class BaseTest {
     protected ProjectDetailsPage projectDetailsPage;
     protected AddTestCasePage addTestCasePage;
     protected TestCaseDetailsPage testCaseDetailsPage;
+    protected OpenProjectsOverviewStep openProjectsOverviewStep;
 
     //ПЕРЕПИСАТЬ И СКРЫТЬ (!!!)
     protected String EMAIL = System.getProperty("EMAIL", PropertyReader.getProperty("EMAIL"));
@@ -77,6 +75,7 @@ public class BaseTest {
         projectDetailsPage = new ProjectDetailsPage(driver);
         addTestCasePage = new AddTestCasePage(driver);
         testCaseDetailsPage = new TestCaseDetailsPage(driver);
+        openProjectsOverviewStep = new OpenProjectsOverviewStep(driver);
     }
 //
 //    @Step("Close browser")

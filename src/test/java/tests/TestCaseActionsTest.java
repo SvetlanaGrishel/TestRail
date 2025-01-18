@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import pages.AddTestCasePage;
 import pages.TestCaseDetailsPage;
+import tests.base.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 
