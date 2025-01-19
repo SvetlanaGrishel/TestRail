@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" name="TestRail Smoke Test" parallel="tests">
+<suite thread-count="1" name="TestRail Smoke Test">
     <listeners>
         <listener class-name="tests.base.TestListener"/>
         <listener class-name="tests.base.AnnotationTransformer"/>
@@ -8,12 +8,8 @@
     <test name="Thread#1">
         <classes>
             <class name="tests.LoginTest"/>
-            <class name="tests.ProjectActionsTest"/>
-        </classes>
-    </test> <!-- Test -->
-    <test name="Thread#2">
-        <classes>
             <class name="tests.HomepageTest"/>
+            <class name="tests.ProjectActionsTest"/>
             <class name="tests.TestCaseActionsTest"></class>
         </classes>
     </test> <!-- Test -->

@@ -96,7 +96,7 @@ public class TestCaseActionsTest extends BaseTest {
                 "Successfully added the new test case. Add another",
                 "FAIL checkAddAnotherLinkAndValidationForRequiredField test");
         testCaseDetailsPage.clickAddAnotherLink();
-        addTestCasePage.fillAddTestCaseForm(testCase3, "Just test data");
+        addTestCasePage.fillAddTestCaseForm(testCase3, "");
         assertEquals(AddTestCasePage.getMessageAboutRequiredField(),
                 "Field Title is a required field.",
                 "FAIL checkAddAnotherLinkAndValidationForRequiredField test");

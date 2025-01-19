@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" name="TestRail CrossBrowser Test" parallel="classes">
+<suite thread-count="2" name="TestRail CrossBrowser Test" parallel="tests">
     <listeners>
         <listener class-name="tests.base.TestListener"/>
         <listener class-name="tests.base.AnnotationTransformer"/>
@@ -15,7 +15,7 @@
     <test name="Thread#Firefox">
         <classes>
             <class name="tests.HomepageTest"/>
-            <class name="tests.TestCaseActionsTest"></class>
+            <class name="tests.TestCaseActionsTest"/>
             <parameter name="browser" value="firefox"/>
         </classes>
     </test> <!-- Test -->
