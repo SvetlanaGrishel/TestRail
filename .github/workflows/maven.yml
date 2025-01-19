@@ -34,5 +34,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run tests
-      run: mvn clean test -DEMAIL=$EMAIL -DPASSWORD=$PASSWORD -DNOT_VALID_EMAIL=$NOT_VALID_EMAIL -DNOT_VALID_PASSWORD=$NOT_VALID_PASSWORD
+      run: mvn clean test -DsuiteXmlFile='src/test/resources/SmokeTest.xml -DEMAIL=$EMAIL -DPASSWORD=$PASSWORD -DNOT_VALID_EMAIL=$NOT_VALID_EMAIL -DNOT_VALID_PASSWORD=$NOT_VALID_PASSWORD
+
       

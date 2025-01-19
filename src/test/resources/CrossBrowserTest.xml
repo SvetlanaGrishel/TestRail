@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" name="TestRail SmokeTest" parallel="tests">
+<suite thread-count="2" name="TestRail CrossBrowser Test" parallel="tests">
     <listeners>
         <listener class-name="tests.base.TestListener"/>
         <listener class-name="tests.base.AnnotationTransformer"/>
     </listeners>
-    <test name="Thread#1">
+    <test name="Thread#Chrome">
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.ProjectActionsTest"/>
+            <parameter name="browser" value="chrome"/>
         </classes>
     </test> <!-- Test -->
-    <test name="Thread#2">
+    <test name="Thread#Firefox">
         <classes>
             <class name="tests.HomepageTest"/>
             <class name="tests.TestCaseActionsTest"></class>
+            <parameter name="browser" value="firefox"/>
         </classes>
     </test> <!-- Test -->
 </suite>
