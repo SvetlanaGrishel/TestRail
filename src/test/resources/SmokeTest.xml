@@ -10,6 +10,7 @@
             <class name="tests.HomepageTest"/>
             <class name="tests.LoginTest"/>
             <class name="tests.ProjectActionsTest"/>
+            <class name="tests.TestCaseActionsTest"></class>
         </classes>
     </test> <!-- Test -->
 </suite>

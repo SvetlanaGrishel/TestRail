@@ -14,6 +14,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  EMAIL: ${{secrets.EMAIL}}
+  PASSWORD: ${{secrets.PASSWORD}}
+  NOT_VALID_EMAIL: ${{secrets.NOT_VALID_EMAIL}}
+  NOT_VALID_PASSWORD: ${{secrets.NOT_VALID_PASSWORD}}
+
 jobs:
   build:
 
@@ -28,5 +34,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run tests
-      run: mvn clean test
+      run: mvn clean test -Demail=$EMAIL -Dpassword=$PASSWORD -DNOT_VALID_EMAIL=$NOT_VALID_EMAIL -DNOT_VALID_PASSWORD=$NOT_VALID_PASSWORD
       
