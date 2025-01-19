@@ -9,6 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
 import steps.LoginStep;
@@ -17,6 +18,8 @@ import steps.VariableStep;
 import utils.PropertyReader;
 
 import java.time.Duration;
+
+import static utils.AllureUtils.takeScreenshot;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -81,13 +84,13 @@ public class BaseTest {
         testCasesOverviewPage = new TestCasesOverviewPage(driver);
         deleteTestCaseModal = new DeleteTestCaseModal(driver);
     }
-//
-//    @Step("Close browser")
-//    @AfterMethod(alwaysRun = true)
-//    public void tearDown(ITestResult result) {
-//        if (ITestResult.FAILURE == result.getStatus()) {
-//            takeScreenshot(driver);
-//        }
-//        driver.quit();
-//    }
+
+    @Step("Close browser")
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            takeScreenshot(driver);
+        }
+        driver.quit();
+    }
 }
