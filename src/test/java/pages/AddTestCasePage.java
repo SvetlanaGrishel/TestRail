@@ -33,13 +33,24 @@ public class AddTestCasePage extends BasePage {
         new Picklist(driver, "Template").select(testCase.getTemplateTestCase());
         new Picklist(driver, "Type").select(testCase.getTypeTestCase());
         new Picklist(driver, "Priority").select(testCase.getPriorityTestCase());
-        //new Picklist(driver, "Assigned To").select(testCase.getAssignedToTestCase());
         new Picklist(driver, "Automation Type").select(testCase.getAutomationTypeTestCase());
         new TextArea(driver, "Preconditions").write(testCase.getPreconditionsTestCase());
         new TextArea(driver, "Steps").write(testCase.getStepsTestCase());
         new TextArea(driver, "Expected Result").write(testCase.getExpectedResultTestCase());
         driver.findElement(ADD_TEST_CASE_BUTTON).click();
         return this;
+    }
+
+    @Step("Fill title of Test Case only")
+    public void fillTestCaseTitle(String titleTestCase) {
+        log.info("Fill title of Test Case only");
+        driver.findElement(TITLE_TEST_CASE).sendKeys(titleTestCase);
+    }
+
+    @Step("Click 'Save Test Case' button")
+    public void clickSaveTestCase() {
+        log.info("Click 'Save Test Case' button");
+        driver.findElement(ADD_TEST_CASE_BUTTON).click();
     }
 
     @Step("Check message about required field for title")
@@ -49,7 +60,7 @@ public class AddTestCasePage extends BasePage {
     }
 
     @Override
-    public BasePage isPageOpened() {
+    public AddTestCasePage isPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_ADD_TEST_CASE_PAGE));
         } catch (TimeoutException e) {
@@ -60,7 +71,7 @@ public class AddTestCasePage extends BasePage {
     }
 
     @Override
-    public BasePage open() {
+    public AddTestCasePage open() {
         return null;
     }
 }

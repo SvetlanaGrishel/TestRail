@@ -67,6 +67,14 @@ public class ProjectsOverviewPage extends BasePage {
     }
 
     @Override
+    @Step("Open 'Projects' page")
+    public ProjectsOverviewPage open() {
+        log.info("Open 'Projects' page");
+        driver.get(PROJECTS_PAGE_URL);
+        return this;
+    }
+
+    @Override
     @Step("Check that 'Projects' page is opened")
     public ProjectsOverviewPage isPageOpened() {
         try {
@@ -75,14 +83,6 @@ public class ProjectsOverviewPage extends BasePage {
             log.error(e.getMessage());
             Assert.fail("'Add Project' page isn't opened");
         }
-        return this;
-    }
-
-    @Override
-    @Step("Open 'Projects' page")
-    public ProjectsOverviewPage open() {
-        log.info("Open 'Projects' page");
-        driver.get(PROJECTS_PAGE_URL);
         return this;
     }
 }

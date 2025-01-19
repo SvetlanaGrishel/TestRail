@@ -5,6 +5,7 @@ import io.qameta.allure.*;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import tests.base.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -13,21 +14,20 @@ import static org.testng.Assert.assertTrue;
 public class ProjectActionsTest extends BaseTest {
 
     Faker faker = new Faker();
-    public String projectNameFirst = "FIRST_project";
-    public String projectNameSecond = faker.company().name();
-    public String projectNameThird = faker.company().name();
-    public String projectNameDeletedProject = "DELETE";
-    public String editProjectName = "EDITED_name_";
-    public String cancelDeleteProjectName = "Cancel deleting project";
+
+    private static final String projectNameFirst = "FIRST_project";
+    private String projectNameSecond = faker.company().name();
+    private String projectNameThird = faker.company().name();
+    private static final String projectNameDeletedProject = "DELETE";
+    private static final String editProjectName = "EDITED_name_";
+    private static final String cancelDeleteProjectName = "Cancel deleting project";
 
     SoftAssert softAssert = new SoftAssert();
 
-    //------------------------------------------------------------------------------------------------------------------
-    //1 - ДОБАВЛЕНИЕ САМОГО ПЕРВОГО ПРОЕКТА
-    @Test(testName = "Add the first project in TestRail", description = "Add the first project in TestRail when projects " +
+    @Test(testName = "Add 1st Project in TestRail", description = "Add the 1st Project in TestRail when projects " +
             "are missing", priority = 1)
-    @Description("Add the first project in TestRail when projects are missing")
-    @Epic("'Add Project' module TestRail")
+    @Description("Add the 1st Project in TestRail when projects are missing")
+    @Epic("'Add Project' module")
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkCreatingFirstProjectInTestrail() {
@@ -36,17 +36,14 @@ public class ProjectActionsTest extends BaseTest {
                 .isPageOpened()
                 .fillProjectName(projectNameFirst);
         addProjectPage.clickAddProjectButton();
-        projectsOverviewPage.open()
-                .isPageOpened();
+        openProjectsOverviewStep.openProjectsOverviewStep();
         assertTrue(projectsOverviewPage.isProjectFound(projectNameFirst), "Project {projectNameFirst} not " +
                 "found on 'Projects' page");
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    //2 - ДОБАВЛЕНИЕ ПРОЕКТА ТОЛЬКО С НАЗВАНИЕМ
-    @Test(testName = "Add new project with name only", description = "Add new project with name only", priority = 2)
-    @Description("Add new project with name only")
-    @Epic("'Add Project' module TestRail")
+    @Test(testName = "Add 2nd Project with name only", description = "Add 2nd Project with name only", priority = 2)
+    @Description("Add 2nd project with name only")
+    @Epic("'Add Project' module")
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkAddingProjectWithNameOnly() {
@@ -57,17 +54,16 @@ public class ProjectActionsTest extends BaseTest {
         addProjectPage.clickAddProjectButton();
         softAssert.assertEquals(addProjectPage.getMessageForCreatedProject(),
                 "Successfully added the new project.",
-                "FAIL checkHomepageElements");
-        softAssert.assertTrue(projectsOverviewPage.isProjectFound(projectNameSecond), "Project {projectNameFirst} not " +
-                "found on 'Projects' page");
+                "FAIL checkAddingProjectWithNameOnly test");
+        softAssert.assertTrue(projectsOverviewPage.isProjectFound(projectNameSecond), "Project {projectNameFirst}" +
+                " not found on 'Projects' page");
         softAssert.assertAll();
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    //3 - ДОБАВЛЕНИЕ ПРОЕКТА С ПЕРЕМЕННЫМИ
-    @Test(testName = "Add new project with name and variables", description = "Add new project with name and variables", priority = 3)
-    @Description("Add new project with name and variables")
-    @Epic("'Add Project' module TestRail")
+    @Test(testName = "Add 3rd Project with name and variables", description = "Add 3rd Project with name and variables",
+            priority = 3)
+    @Description("Add 3rd Project with name and variables")
+    @Epic("'Add Project' module")
     @Severity(SeverityLevel.NORMAL)
     @Owner("Svetlana Grishel")
     public void checkAddingProjectWithVariables() {
@@ -80,75 +76,67 @@ public class ProjectActionsTest extends BaseTest {
         addProjectPage.clickAddProjectButton();
         softAssert.assertEquals(addProjectPage.getMessageForCreatedProject(),
                 "Successfully added the new project.",
-                "FAIL addProjectWithVariables");
-        softAssert.assertTrue(projectsOverviewPage.isProjectFound(projectNameThird), "Project {projectNameSecond} not " +
-                "found on 'Projects' page");
+                "FAIL checkAddingProjectWithVariables test");
+        softAssert.assertTrue(projectsOverviewPage.isProjectFound(projectNameThird), "Project {projectNameSecond}" +
+                " not found on 'Projects' page");
         softAssert.assertAll();
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    //4 - РЕДАКТИРОВАНИЕ НАЗВАНИЯ ПРОЕКТА
-    @Test(testName = "Edit project", description = "Edit project", priority = 4)
-    @Description("Edit project")
-    @Epic("'Edit Project' module TestRail")
+    @Test(testName = "Edit Project name for the first project in the list", description = "Edit Project name for the first " +
+            "project in the list", priority = 4)
+    @Description("Edit Project name for the first project in the list")
+    @Epic("'Edit Project' module")
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkEditProjectName() {
         loginStep.loginStep();
-        projectsOverviewPage.open()
-                .isPageOpened()
-                .openEditProjectPage();
+        openProjectsOverviewStep.openProjectsOverviewStep();
+        projectsOverviewPage.openEditProjectPage();
         addProjectPage.fillProjectName(editProjectName);
         addProjectPage.clickAddProjectButton();
         assertEquals(projectsOverviewPage.getMessageForUpdatedProject(),
                 "Successfully updated the project.",
-                "FAIL editProjectName");
+                "FAIL checkEditProjectName test");
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    //5 - ОТМЕНА УДАЛЕНИЯ ПРОЕКТА
-    @Test(testName = "Cancel deleting a project", description = "Cancel deleting a project", priority = 5)
-    @Description("Cancel deleting a project")
-    @Epic("'Delete Project' module TestRail")
+    @Test(testName = "Create new 4th project and cancel deleting of it", description = "Create new 4th project and cancel " +
+            "deleting of it", priority = 5)
+    @Description("Create new 4th project and cancel deleting of it")
+    @Epic("'Delete Project' module")
     @Severity(SeverityLevel.TRIVIAL)
     @Owner("Svetlana Grishel")
     public void checkCancelingProjectDeleting() {
         loginStep.loginStep();
-        projectsOverviewPage.open()
-                .isPageOpened();
+        openProjectsOverviewStep.openProjectsOverviewStep();
         addProjectPage.open()
                 .isPageOpened()
                 .fillProjectName(cancelDeleteProjectName);
         addProjectPage.clickAddProjectButton();
-        projectsOverviewPage.open()
-                .isPageOpened()
-                .clickIconToDeleteProject(cancelDeleteProjectName);
+        openProjectsOverviewStep.openProjectsOverviewStep();
+        projectsOverviewPage.clickIconToDeleteProject(cancelDeleteProjectName);
         deleteProjectModal.notConfirmProjectDeletion();
         assertTrue(projectsOverviewPage.isProjectFound(cancelDeleteProjectName), "Project {projectNameFirst} not " +
                 "found on 'Projects' page");
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    //6 - УДАЛЕНИЕ ПРОЕКТА С ПОДТВЕРЖДЕНИЕМ
-    @Test(testName = "Delete a project", description = "Delete a project", priority = 6)
-    @Description("Delete a project")
-    @Epic("'Delete Project' module TestRail")
+    @Test(testName = "Create new 5th project and delete it", description = "Create new 5th project and delete it",
+            priority = 6)
+    @Description("Create new 5th project and delete it")
+    @Epic("'Delete Project' module")
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Svetlana Grishel")
     public void checkProjectDeleting() {
         loginStep.loginStep();
-        projectsOverviewPage.open()
-                .isPageOpened();
+        openProjectsOverviewStep.openProjectsOverviewStep();
         addProjectPage.open()
                 .isPageOpened()
                 .fillProjectName(projectNameDeletedProject);
         addProjectPage.clickAddProjectButton();
-        projectsOverviewPage.open()
-                .isPageOpened()
-                .clickIconToDeleteProject(projectNameDeletedProject);
+        openProjectsOverviewStep.openProjectsOverviewStep();
+        projectsOverviewPage.clickIconToDeleteProject(projectNameDeletedProject);
         deleteProjectModal.confirmProjectDeletion();
         assertEquals(projectsOverviewPage.getMessageForDeletedProject(),
                 "Successfully deleted the project.",
-                "FAIL editProjectName");
+                "FAIL checkProjectDeleting");
     }
 }

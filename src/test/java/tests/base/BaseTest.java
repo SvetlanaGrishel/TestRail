@@ -34,8 +34,9 @@ public class BaseTest {
     protected AddTestCasePage addTestCasePage;
     protected TestCaseDetailsPage testCaseDetailsPage;
     protected OpenProjectsOverviewStep openProjectsOverviewStep;
+    protected TestCasesOverviewPage testCasesOverviewPage;
+    protected DeleteTestCaseModal deleteTestCaseModal;
 
-    //ПЕРЕПИСАТЬ И СКРЫТЬ (!!!)
     protected String EMAIL = System.getProperty("EMAIL", PropertyReader.getProperty("EMAIL"));
     protected String PASSWORD = System.getProperty("PASSWORD", PropertyReader.getProperty("PASSWORD"));
     protected String NOT_VALID_EMAIL = System.getProperty("NOT_VALID_EMAIL", PropertyReader.getProperty("NOT_VALID_EMAIL"));
@@ -48,7 +49,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            //options.addArguments("--headless");
+            options.addArguments("--headless");
             options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
@@ -62,6 +63,7 @@ public class BaseTest {
             firefoxOptions.addArguments("--headless");
             driver = new FirefoxDriver(firefoxOptions);
         }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         homepage = new Homepage(driver);
@@ -76,6 +78,8 @@ public class BaseTest {
         addTestCasePage = new AddTestCasePage(driver);
         testCaseDetailsPage = new TestCaseDetailsPage(driver);
         openProjectsOverviewStep = new OpenProjectsOverviewStep(driver);
+        testCasesOverviewPage = new TestCasesOverviewPage(driver);
+        deleteTestCaseModal = new DeleteTestCaseModal(driver);
     }
 //
 //    @Step("Close browser")

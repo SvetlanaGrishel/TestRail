@@ -15,7 +15,6 @@ public class Homepage extends BasePage {
     private static final String ALL_PROJECTS_PAGE_URL = "https://sgtestrail.testrail.io/index.php?/dashboard";
     private static final By ADD_PROJECT_BUTTON = By.id("sidebar-projects-add");
     private static final By ADMINISTRATION_LINK = By.id("navigation-admin");
-    //private static final String PROJECT_TITLE_HOMEPAGE_PATTERN = "//tr[contains(@class,'project')]//child::a[text()='%s']";
     private static final String PROJECT_TITLE_HOMEPAGE_PATTERN = "//a[text() = '%s']";
 
     public Homepage(WebDriver driver) {
@@ -53,6 +52,14 @@ public class Homepage extends BasePage {
     }
 
     @Override
+    @Step("Open 'Homepage' page")
+    public Homepage open() {
+        log.info("Open 'Homepage' page");
+        driver.get(ALL_PROJECTS_PAGE_URL);
+        return this;
+    }
+
+    @Override
     @Step("Check that Homepage page is opened")
     public Homepage isPageOpened() {
         try {
@@ -61,14 +68,6 @@ public class Homepage extends BasePage {
             log.error(e.getMessage());
             Assert.fail("'Homepage' page isn't opened");
         }
-        return this;
-    }
-
-    @Override
-    @Step("Open 'Homepage' page")
-    public Homepage open() {
-        log.info("Open 'Homepage' page");
-        driver.get(ALL_PROJECTS_PAGE_URL);
         return this;
     }
 }

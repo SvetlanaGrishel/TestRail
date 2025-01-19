@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 @Log4j2
-public class DeleteProjectModal extends BasePage{
+public class DeleteProjectModal extends BasePage {
 
     private static final By DELETE_PROJECT_MODAL_TITLE = By.id("ui-dialog-title-deleteDialog");
     private static final By CHECKBOX_DELETE_PROJECT_MODAL = By.xpath("//*[@id='deleteDialog']" +
@@ -36,7 +36,14 @@ public class DeleteProjectModal extends BasePage{
     }
 
     @Override
-    public BasePage isPageOpened() {
+    @Step("Open the 'Confirmation' modal for project deleting")
+    public DeleteProjectModal open() {
+        return null;
+    }
+
+    @Override
+    @Step("Check that 'Confirmation' modal for project deleting is opened")
+    public DeleteProjectModal isPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_PROJECT_MODAL_TITLE));
         } catch (TimeoutException e) {
@@ -44,10 +51,5 @@ public class DeleteProjectModal extends BasePage{
             Assert.fail("'Add Project' page isn't opened");
         }
         return this;
-    }
-
-    @Override
-    public BasePage open() {
-        return null;
     }
 }

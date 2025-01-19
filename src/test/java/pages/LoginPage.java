@@ -31,26 +31,6 @@ public class LoginPage extends BasePage {
         return new Homepage(driver);
     }
 
-    @Override
-    @Step("Check that 'Login' page is opened")
-    public LoginPage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
-        } catch (TimeoutException e) {
-            log.error(e.getMessage());
-            Assert.fail("'Login' page isn't opened");
-        }
-        return this;
-    }
-
-    @Override
-    @Step("Open 'Login page'")
-    public LoginPage open() {
-        log.info("Open 'Login' page in TestRail");
-        driver.get(BASE_TESTRAIL_URL);
-        return this;
-    }
-
     @Step("Get the texts of error messages on 'Login' page when one field is empty")
     public String getLoginErrorMessageEmptyFields() {
         log.info("Get the texts of error messages on Login page when one field is empty");
@@ -61,5 +41,25 @@ public class LoginPage extends BasePage {
     public String getGeneralLoginErrorMessage() {
         log.info("Get the text of general error message on Login page");
         return driver.findElement(GENERAL_LOGIN_ERROR_MESSAGE).getText();
+    }
+
+    @Override
+    @Step("Open 'Login page'")
+    public LoginPage open() {
+        log.info("Open 'Login' page in TestRail");
+        driver.get(BASE_TESTRAIL_URL);
+        return this;
+    }
+
+    @Override
+    @Step("Check that 'Login' page is opened")
+    public LoginPage isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
+        } catch (TimeoutException e) {
+            log.error(e.getMessage());
+            Assert.fail("'Login' page isn't opened");
+        }
+        return this;
     }
 }

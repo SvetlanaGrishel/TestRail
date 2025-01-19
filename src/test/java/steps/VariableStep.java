@@ -3,8 +3,8 @@ package steps;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
-import pages.Homepage;
 import pages.ConfigureVariablePage;
+import pages.Homepage;
 
 @Log4j2
 public class VariableStep {
@@ -17,9 +17,9 @@ public class VariableStep {
         configureVariablePage = new ConfigureVariablePage(driver);
     }
 
-    @Step("Create account with Account information, Address Information and Additional Information")
+    @Step("Fill information to create new variable and click 'OK' button")
     public void createVariable() {
-        log.info("Creating new account, filling information");
+        log.info("Fill information to create new variable and click 'OK' button");
         configureVariablePage.clickTabVariables();
         configureVariablePage.fillVariableInformation();
         configureVariablePage.clickOkButton();

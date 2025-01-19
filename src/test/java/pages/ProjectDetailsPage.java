@@ -8,26 +8,36 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class ProjectDetailsPage extends BasePage {
 
-    private final By ADD_TEST_CASE_LINK = By.id("sidebar-cases-add");
+    private static final By ADD_TEST_CASE_LINK = By.id("sidebar-cases-add");
+    private static final By VIEW_ALL_TEST_CASE_LINK = By.id("sidebar-suites-viewall");
 
     public ProjectDetailsPage(WebDriver driver) {
         super(driver);
     }
 
-    @Step("Click 'Add' link for Test Case block")
+    @Step("Click 'Add' link for Test Cases block")
     public AddTestCasePage clickAddTestCaseLink() {
-        log.info("Click 'Add' link for Test Case block");
+        log.info("Click 'Add' link for Test Cases block");
         driver.findElement(ADD_TEST_CASE_LINK).click();
         return new AddTestCasePage(driver);
     }
 
+    @Step("Click 'View All' link for Test Cases block")
+    public TestCaseDetailsPage clickViewAllTestCasesLink() {
+        log.info("Click 'View All' link for Test Cases block");
+        driver.findElement(VIEW_ALL_TEST_CASE_LINK).click();
+        return new TestCaseDetailsPage(driver);
+    }
+
     @Override
-    public BasePage isPageOpened() {
+    @Step("Open 'Project Details' page")
+    public ProjectDetailsPage open() {
         return null;
     }
 
     @Override
-    public BasePage open() {
+    @Step("Check that 'Project Details' page is opened")
+    public ProjectDetailsPage isPageOpened() {
         return null;
     }
 }

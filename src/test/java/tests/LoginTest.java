@@ -1,65 +1,68 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 
 @Log4j2
 public class LoginTest extends BaseTest {
 
-    @Test(testName = "Log in with valid credentials", description = "Log in in TestRails with valid credentials", priority = 1)
-    @Description("Log in with valid credentials in TestRail")
-    @Epic("Login module TestRail")
+    @Test(testName = "Log in to TestRail with valid credentials", description = "Log in to TestRail with valid " +
+            "credentials", priority = 1)
+    @Description("Log in to the TestRail with valid credentials")
+    @Epic("'Login' module")
     @Severity(SeverityLevel.CRITICAL)
-    public void loginWithValidCredentials() {
+    @Owner("Svetlana Grishel")
+    public void checkLoginWithValidCredentials() {
         loginStep.loginStep();
         assertEquals(
                 homepage.getTitle(),
                 "All Projects",
-                "Переход на страницу не выполнен");
+                "'All Projects' page isn't opened after login'");
     }
 
-    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!) + СКРЫТЬ ДАННЫЕ
-    @Test(testName = "Log in with empty password", description = "Log in with empty password", priority = 2)
-    @Description("Log in with empty password in TestRail")
-    @Epic("Login module TestRail")
+    @Test(testName = "Log in with empty password and valid email", description = "Log in with empty password and valid " +
+            "email", priority = 2)
+    @Description("Log in with empty password and valid email")
+    @Epic("'Login' module")
     @Severity(SeverityLevel.NORMAL)
-    public void loginWithEmptyPassword() {
+    @Owner("Svetlana Grishel")
+    public void checkLoginWithEmptyPassword() {
         loginPage.open();
         loginPage.login(EMAIL, " ");
         assertEquals(loginPage.getLoginErrorMessageEmptyFields(),
                 "Password is required.",
-                "FAIL loginWithEmptyPassword");
+                "FAIL checkLoginWithEmptyPassword test");
     }
 
-    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!) + СКРЫТЬ ДАННЫЕ
-    @Test(testName = "Log in with empty email", description = "Log in with empty email", priority = 3)
-    @Description("Log in with empty email in TestRail")
-    @Epic("Login module TestRail")
+    @Test(testName = "Log in with empty email and valid password", description = "Log in with empty email and valid " +
+            "password", priority = 3)
+    @Description("Log in with empty email and valid password")
+    @Epic("'Login' module")
     @Severity(SeverityLevel.NORMAL)
-    public void loginWithEmptyEmail() {
+    @Owner("Svetlana Grishel")
+    public void checkLoginWithEmptyEmail() {
         loginPage.open();
         loginPage.login("", PASSWORD);
         assertEquals(loginPage.getLoginErrorMessageEmptyFields(),
                 "Email/Login is required.",
-                "FAIL loginWithEmptyEmail");
+                "FAIL checkLoginWithEmptyEmail test");
     }
 
-    //ПЕРЕПИСАТЬ С DATA PROVIDER (!!!) + СКРЫТЬ ДАННЫЕ
-    @Test(testName = "Log in with not valid credentials", description = "Log in with not valid credentials", priority = 4)
-    @Description("Log in with not valid credentials in TestRail")
-    @Epic("Login module TestRail")
+    @Test(testName = "Log in with not valid credentials", description = "Log in with not valid credentials: email and " +
+            "password", priority = 4)
+    @Description("Log in with not valid credentials: email and password")
+    @Epic("'Login' module")
     @Severity(SeverityLevel.NORMAL)
-    public void loginWithNotValidCredentials() {
+    @Owner("Svetlana Grishel")
+    public void checkLoginWithNotValidCredentials() {
         loginPage.open();
         loginPage.login(NOT_VALID_EMAIL, NOT_VALID_PASSWORD);
         assertEquals(loginPage.getGeneralLoginErrorMessage(),
                 "Email/Login or Password is incorrect. Please try again.",
-                "FAIL loginWithNotValidCredentials");
+                "FAIL checkLoginWithNotValidCredentials");
     }
 }

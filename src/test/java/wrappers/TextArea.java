@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class TextArea {
 
-
     WebDriver driver;
     String label;
 
@@ -22,6 +21,4 @@ public class TextArea {
                         "//div[@role='textbox']", label)))
                 .sendKeys(text);
     }
-
-
 }

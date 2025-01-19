@@ -20,7 +20,7 @@ public class ConfigureVariablePage extends BasePage {
 
     @Step("Fill variable information")
     public ConfigureVariablePage fillVariableInformation() {
-        //log.info("Fill Account Information on 'New Account' modal '{}'", variable.getLabelVariable());
+        log.info("Fill data for creating new variable");
         driver.findElement(By.id("userFieldLabel")).sendKeys(faker.company().name());
         driver.findElement(By.id("userFieldDesc")).sendKeys(faker.company().url());
         driver.findElement(By.id("userFieldName")).sendKeys(faker.lorem().word());
@@ -31,25 +31,6 @@ public class ConfigureVariablePage extends BasePage {
 
     public ConfigureVariablePage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    @Step("Open 'Configure UserVariable' modal")
-    public ConfigureVariablePage open() {
-        log.info("Open 'Configure UserVariable' modal");
-        driver.findElement(ADD_USER_VARIABLE_LINK).click();
-        return this;
-    }
-
-    @Override
-    public BasePage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_CONFIGURE_VARIABLE));
-        } catch (TimeoutException e) {
-            log.error(e.getMessage());
-            Assert.fail("'Add Project' page isn't opened");
-        }
-        return this;
     }
 
     @Step("Open 'Variables' tab")
@@ -63,6 +44,26 @@ public class ConfigureVariablePage extends BasePage {
     public ConfigureVariablePage clickOkButton() {
         log.info("Click 'OK' button to save the variable");
         driver.findElement(OK_BUTTON).click();
+        return this;
+    }
+
+    @Override
+    @Step("Open 'Configure UserVariable' modal")
+    public ConfigureVariablePage open() {
+        log.info("Open 'Configure UserVariable' modal");
+        driver.findElement(ADD_USER_VARIABLE_LINK).click();
+        return this;
+    }
+
+    @Override
+    @Step("Check that the 'Configure UserVariable' modal is opened")
+    public ConfigureVariablePage isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_CONFIGURE_VARIABLE));
+        } catch (TimeoutException e) {
+            log.error(e.getMessage());
+            Assert.fail("'Add Project' page isn't opened");
+        }
         return this;
     }
 }
