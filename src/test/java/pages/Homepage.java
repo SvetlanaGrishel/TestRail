@@ -51,15 +51,13 @@ public class Homepage extends BasePage {
         return new ProjectDetailsPage(driver);
     }
 
-    @Override
     @Step("Open 'Homepage' page")
-    public Homepage open() {
+    public Homepage openHomepage() {
         log.info("Open 'Homepage' page");
         driver.get(ALL_PROJECTS_PAGE_URL);
         return this;
     }
 
-    @Override
     @Step("Check that Homepage page is opened")
     public Homepage isPageOpened() {
         try {

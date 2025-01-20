@@ -23,15 +23,17 @@ public class TestCasesOverviewPage extends BasePage {
     }
 
     @Step("Open 'Test Case Details' page")
-    public void openTestCaseDetailsPage() {
+    public TestCaseDetailsPage openTestCaseDetailsPage() {
         log.info("Open 'Test Case Details' page");
         driver.findElement(TEST_CASE_TITLE_LINK).click();
+        return new TestCaseDetailsPage(driver);
     }
 
     @Step("Mark checkbox to select all Test Cases")
-    public void markCheckboxToSelectAllTestCases() {
+    public TestCasesOverviewPage markCheckboxToSelectAllTestCases() {
         log.info("Mark checkbox to select all Test Cases");
         driver.findElement(CHECKBOX_SELECT_ALL_CASES).click();
+        return this;
     }
 
     @Step("Click 'Delete' button for Test Case")
@@ -48,15 +50,8 @@ public class TestCasesOverviewPage extends BasePage {
         return checkIconTestCasesQuantity;
     }
 
-    @Override
-    @Step("Open 'Test Cases Overview' page")
-    public TestCasesOverviewPage open() {
-        return null;
-    }
-
-    @Override
     @Step("Check that 'Test Cases Overview' page is opened")
-    public TestCasesOverviewPage isPageOpened() {
+    public TestCasesOverviewPage isTestCasesOverviewPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(TEST_CASES_OVERVIEW_PAGE_TITLE));
         } catch (TimeoutException e) {

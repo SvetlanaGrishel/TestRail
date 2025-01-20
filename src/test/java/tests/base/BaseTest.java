@@ -13,7 +13,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
 import steps.LoginStep;
-import steps.OpenProjectsOverviewStep;
 import steps.VariableStep;
 import utils.PropertyReader;
 
@@ -36,7 +35,6 @@ public class BaseTest {
     protected ProjectDetailsPage projectDetailsPage;
     protected AddTestCasePage addTestCasePage;
     protected TestCaseDetailsPage testCaseDetailsPage;
-    protected OpenProjectsOverviewStep openProjectsOverviewStep;
     protected TestCasesOverviewPage testCasesOverviewPage;
     protected DeleteTestCaseModal deleteTestCaseModal;
 
@@ -80,7 +78,6 @@ public class BaseTest {
         projectDetailsPage = new ProjectDetailsPage(driver);
         addTestCasePage = new AddTestCasePage(driver);
         testCaseDetailsPage = new TestCaseDetailsPage(driver);
-        openProjectsOverviewStep = new OpenProjectsOverviewStep(driver);
         testCasesOverviewPage = new TestCasesOverviewPage(driver);
         deleteTestCaseModal = new DeleteTestCaseModal(driver);
     }

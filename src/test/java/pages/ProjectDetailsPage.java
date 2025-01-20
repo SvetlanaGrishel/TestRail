@@ -23,21 +23,14 @@ public class ProjectDetailsPage extends BasePage {
     }
 
     @Step("Click 'View All' link for Test Cases block")
-    public TestCaseDetailsPage clickViewAllTestCasesLink() {
+    public TestCasesOverviewPage clickViewAllTestCasesLink() {
         log.info("Click 'View All' link for Test Cases block");
         driver.findElement(VIEW_ALL_TEST_CASE_LINK).click();
-        return new TestCaseDetailsPage(driver);
+        return new TestCasesOverviewPage(driver);
     }
 
-    @Override
-    @Step("Open 'Project Details' page")
-    public ProjectDetailsPage open() {
-        return null;
-    }
-
-    @Override
     @Step("Check that 'Project Details' page is opened")
-    public ProjectDetailsPage isPageOpened() {
+    public ProjectDetailsPage isProjectDetailsPageOpened() {
         return null;
     }
 }

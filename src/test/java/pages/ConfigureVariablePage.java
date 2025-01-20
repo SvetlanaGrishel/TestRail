@@ -34,10 +34,11 @@ public class ConfigureVariablePage extends BasePage {
     }
 
     @Step("Open 'Variables' tab")
-    public void clickTabVariables() {
+    public ConfigureVariablePage clickTabVariables() {
         log.info("Open 'Variables' tab");
         driver.findElement(By.id("users-fields-fields")).click();
         driver.findElement(By.xpath("//*[@id='addConfig']/p/a")).click();
+        return this;
     }
 
     @Step("Click 'OK' button to save the variable")
@@ -47,17 +48,15 @@ public class ConfigureVariablePage extends BasePage {
         return this;
     }
 
-    @Override
     @Step("Open 'Configure UserVariable' modal")
-    public ConfigureVariablePage open() {
+    public ConfigureVariablePage openConfigureVariablePage() {
         log.info("Open 'Configure UserVariable' modal");
         driver.findElement(ADD_USER_VARIABLE_LINK).click();
         return this;
     }
 
-    @Override
     @Step("Check that the 'Configure UserVariable' modal is opened")
-    public ConfigureVariablePage isPageOpened() {
+    public ConfigureVariablePage isConfigureVariablePageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_CONFIGURE_VARIABLE));
         } catch (TimeoutException e) {

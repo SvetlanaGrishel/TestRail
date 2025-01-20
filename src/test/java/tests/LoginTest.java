@@ -1,13 +1,11 @@
 package tests;
 
 import io.qameta.allure.*;
-import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 
-@Log4j2
 public class LoginTest extends BaseTest {
 
     @Test(testName = "Log in to TestRail with valid credentials", description = "Log in to TestRail with valid " +
@@ -31,8 +29,8 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Owner("Svetlana Grishel")
     public void checkLoginWithEmptyPassword() {
-        loginPage.open();
-        loginPage.login(EMAIL, " ");
+        loginPage.openLoginPage()
+                .login(EMAIL, " ");
         assertEquals(loginPage.getLoginErrorMessageEmptyFields(),
                 "Password is required.",
                 "FAIL checkLoginWithEmptyPassword test");
@@ -45,8 +43,8 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Owner("Svetlana Grishel")
     public void checkLoginWithEmptyEmail() {
-        loginPage.open();
-        loginPage.login("", PASSWORD);
+        loginPage.openLoginPage()
+                .login("", PASSWORD);
         assertEquals(loginPage.getLoginErrorMessageEmptyFields(),
                 "Email/Login is required.",
                 "FAIL checkLoginWithEmptyEmail test");
@@ -59,8 +57,8 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Owner("Svetlana Grishel")
     public void checkLoginWithNotValidCredentials() {
-        loginPage.open();
-        loginPage.login(NOT_VALID_EMAIL, NOT_VALID_PASSWORD);
+        loginPage.openLoginPage()
+                .login(NOT_VALID_EMAIL, NOT_VALID_PASSWORD);
         assertEquals(loginPage.getGeneralLoginErrorMessage(),
                 "Email/Login or Password is incorrect. Please try again.",
                 "FAIL checkLoginWithNotValidCredentials");

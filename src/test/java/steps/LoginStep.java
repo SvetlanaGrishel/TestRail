@@ -6,6 +6,8 @@ import pages.Homepage;
 import pages.LoginPage;
 import utils.PropertyReader;
 
+import static pages.BasePage.driver;
+
 @Log4j2
 public class LoginStep {
 
@@ -19,10 +21,11 @@ public class LoginStep {
         loginPage = new LoginPage(driver);
     }
 
-    public void loginStep() {
+    public Homepage loginStep() {
         log.info("Login to the 'TestRail' with valid credentials");
-        loginPage.open()
-                .isPageOpened()
+        loginPage.openLoginPage()
+                .isLoginPageOpened()
                 .login(EMAIL, PASSWORD);
+        return new Homepage(driver);
     }
 }

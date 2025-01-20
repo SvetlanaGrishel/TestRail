@@ -25,9 +25,10 @@ public class DeleteTestCaseModal extends BasePage {
     }
 
     @Step("Confirm permanent Test Case deletion on 'Confirmation' modal")
-    public void confirmPermanentTestCaseDeletion() {
+    public DeleteTestCaseModal confirmPermanentTestCaseDeletion() {
         log.info("Confirm permanent Test Case deletion on 'Confirmation' modal");
         driver.findElement(DELETE_PERMANENTLY_BUTTON_DELETE_TEST_CASE_MODAL).click();
+        return this;
     }
 
     @Step("Final confirm permanent Test Case deletion on 'Confirmation' modal")
@@ -38,26 +39,21 @@ public class DeleteTestCaseModal extends BasePage {
     }
 
     @Step("Cancel Test Case deletion on 'Confirmation' modal")
-    public void cancelTestCaseDeletion() {
+    public DeleteTestCaseModal cancelTestCaseDeletion() {
         log.info("Cancel Test Case deletion on 'Confirmation' modal");
         driver.findElement(CANCEL_BUTTON_DELETE_TEST_CASE_MODAL).click();
+        return this;
     }
 
     @Step("Mark Test Case as deleted on 'Confirmation' modal")
-    public void markTestCaseAsDeleted() {
+    public DeleteTestCaseModal markTestCaseAsDeleted() {
         log.info("Mark Test Case as deleted on 'Confirmation' modal");
         driver.findElement(MARK_AS_DELETED_BUTTON_DELETE_TEST_CASE_MODAL).click();
+        return this;
     }
 
-    @Override
-    @Step("Open 'Confirmation' modal for test case deletion")
-    public DeleteTestCaseModal open() {
-        return null;
-    }
-
-    @Override
     @Step("Check that 'Confirmation' modal for test case deletion is opened")
-    public DeleteTestCaseModal isPageOpened() {
+    public DeleteTestCaseModal isDeleteTestCaseModalOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_TEST_CASE_MODAL_TITLE));
         } catch (TimeoutException e) {

@@ -31,32 +31,28 @@ public class TestCaseDetailsPage extends BasePage {
     }
 
     @Step("Click 'Add another' link")
-    public void clickAddAnotherLink() {
+    public AddTestCasePage clickAddAnotherLink() {
         log.info("Click 'Add another' link");
         driver.findElement(ADD_ANOTHER_LINK).click();
+        return new AddTestCasePage(driver);
     }
 
     @Step("Click 'Edit' for Test Case")
-    public void clickEditIcon() {
+    public AddTestCasePage clickEditIcon() {
         log.info("Click 'Edit' for Test Case");
         driver.findElement(EDIT_TEST_CASE_BUTTON).click();
+        return new AddTestCasePage(driver);
     }
 
     @Step("Click 'Test Cases' breadcrumbs")
-    public void clickTestCasesBreadcrumbs() {
+    public TestCasesOverviewPage clickTestCasesBreadcrumbs() {
         log.info("Click 'Test Cases' breadcrumbs");
         driver.findElement(TEST_CASES_BREADCRUMB).click();
+        return new TestCasesOverviewPage(driver);
     }
 
-    @Override
-    @Step("Open 'Test Case Details' page")
-    public TestCaseDetailsPage open() {
-        return null;
-    }
-
-    @Override
     @Step("Check that 'Test Case Details' page is opened")
-    public TestCaseDetailsPage isPageOpened() {
+    public TestCaseDetailsPage isTestCaseDetailsPageOpened() {
         return null;
     }
 }
