@@ -15,7 +15,8 @@ public class ConfigureVariablePage extends BasePage {
     Faker faker = new Faker();
 
     private static final By OK_BUTTON = By.id("userFieldSubmit");
-    private static final By ADD_USER_VARIABLE_LINK = By.id("addConfig");
+    private static final By VARIABLE_TAB = By.id("users-fields-fields");
+    private static final By ADD_USER_VARIABLE_LINK = By.xpath("//*[@id='addConfig']/p/a");
     private static final By TITLE_CONFIGURE_VARIABLE = By.id("ui-dialog-title-userFieldDialog");
 
     @Step("Fill variable information")
@@ -36,8 +37,8 @@ public class ConfigureVariablePage extends BasePage {
     @Step("Open 'Variables' tab")
     public ConfigureVariablePage clickTabVariables() {
         log.info("Open 'Variables' tab");
-        driver.findElement(By.id("users-fields-fields")).click();
-        driver.findElement(By.xpath("//*[@id='addConfig']/p/a")).click();
+        driver.findElement(VARIABLE_TAB).click();
+        driver.findElement(ADD_USER_VARIABLE_LINK).click();
         return this;
     }
 
@@ -45,13 +46,6 @@ public class ConfigureVariablePage extends BasePage {
     public ConfigureVariablePage clickOkButton() {
         log.info("Click 'OK' button to save the variable");
         driver.findElement(OK_BUTTON).click();
-        return this;
-    }
-
-    @Step("Open 'Configure UserVariable' modal")
-    public ConfigureVariablePage openConfigureVariablePage() {
-        log.info("Open 'Configure UserVariable' modal");
-        driver.findElement(ADD_USER_VARIABLE_LINK).click();
         return this;
     }
 

@@ -23,7 +23,7 @@ public class Homepage extends BasePage {
 
     @Step("Get title of the 'All Projects' page")
     public String getTitle() {
-        log.info("Get title of the Homepage page");
+        log.info("Get title of the 'Homepage' page");
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_ALL_PROJECTS_PAGE));
         return driver.findElement(TITLE_ALL_PROJECTS_PAGE).getText();
     }
@@ -42,10 +42,9 @@ public class Homepage extends BasePage {
         return resultFindAddProjectButton;
     }
 
-    //ПЕРЕПИСАТЬ (!!!)
     @Step("Open project details page from 'Homepage'")
     public ProjectDetailsPage openProjectDetailsPage(String projectName) {
-        log.info("Open project details page from 'Homepage'");
+        log.info("Open project details page from 'Homepage': '{}'", projectName);
         By projectNamePattern = By.xpath(String.format(PROJECT_TITLE_HOMEPAGE_PATTERN, projectName));
         driver.findElement(projectNamePattern).click();
         return new ProjectDetailsPage(driver);

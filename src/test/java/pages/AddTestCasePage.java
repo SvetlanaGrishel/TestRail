@@ -43,7 +43,7 @@ public class AddTestCasePage extends BasePage {
 
     @Step("Fill title of Test Case only")
     public AddTestCasePage fillTestCaseTitle(String titleTestCase) {
-        log.info("Fill title of Test Case only");
+        log.info("Fill title of Test Case only: '{}'", titleTestCase);
         driver.findElement(TITLE_TEST_CASE).sendKeys(titleTestCase);
         return this;
     }

@@ -50,9 +50,4 @@ public class TestCaseDetailsPage extends BasePage {
         driver.findElement(TEST_CASES_BREADCRUMB).click();
         return new TestCasesOverviewPage(driver);
     }
-
-    @Step("Check that 'Test Case Details' page is opened")
-    public TestCaseDetailsPage isTestCaseDetailsPageOpened() {
-        return null;
-    }
 }

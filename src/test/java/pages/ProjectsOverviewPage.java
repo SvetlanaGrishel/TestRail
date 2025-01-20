@@ -27,7 +27,7 @@ public class ProjectsOverviewPage extends BasePage {
 
     @Step("Check that the created project is present on 'Projects' page")
     public boolean isProjectFound(String projectTitle) {
-        log.info("Check that the project is present on 'Projects' page");
+        log.info("Check that the project is present on 'Projects' page: '{}'", projectTitle);
         List<WebElement> projectTitles = driver.findElements(PROJECT_NAME_PATTERN);
         boolean isProjectFound = false;
         for (WebElement nameProject : projectTitles) {
@@ -54,7 +54,7 @@ public class ProjectsOverviewPage extends BasePage {
 
     @Step("Click 'X' icon for project to delete")
     public DeleteProjectModal clickIconToDeleteProject(String projectName) {
-        log.info("Click 'X' icon for project to delete");
+        log.info("Click 'X' icon for project to delete: '{}'", projectName);
         By deleteProjectName = By.xpath(String.format(DELETE_PROJECT_PATTERN, projectName));
         driver.findElement(deleteProjectName).click();
         return new DeleteProjectModal(driver);

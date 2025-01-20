@@ -138,6 +138,7 @@ public class ProjectActionsTest extends BaseTest {
                 .openProjectsOverviewPage()
                 .isPageOpened()
                 .clickIconToDeleteProject(projectNameDeletedProject)
+                .isDeleteProjectModalOpened()
                 .confirmProjectDeletion();
         assertEquals(projectsOverviewPage.getMessageForDeletedProject(),
                 "Successfully deleted the project.",

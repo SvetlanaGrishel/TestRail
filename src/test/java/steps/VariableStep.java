@@ -24,8 +24,9 @@ public class VariableStep {
     public AddProjectPage createVariable() {
         log.info("Fill information to create new variable and click 'OK' button");
         configureVariablePage.clickTabVariables()
-                             .fillVariableInformation()
-                             .clickOkButton();
+                .isConfigureVariablePageOpened()
+                .fillVariableInformation()
+                .clickOkButton();
         return new AddProjectPage(driver);
     }
 }

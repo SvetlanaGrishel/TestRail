@@ -12,7 +12,6 @@ import static pages.BasePage.driver;
 public class LoginStep {
 
     LoginPage loginPage;
-    Homepage homepage;
 
     private String EMAIL = System.getProperty("EMAIL", PropertyReader.getProperty("EMAIL"));
     private String PASSWORD = System.getProperty("PASSWORD", PropertyReader.getProperty("PASSWORD"));
@@ -22,7 +21,7 @@ public class LoginStep {
     }
 
     public Homepage loginStep() {
-        log.info("Login to the 'TestRail' with valid credentials");
+        log.info("Start login step");
         loginPage.openLoginPage()
                 .isLoginPageOpened()
                 .login(EMAIL, PASSWORD);

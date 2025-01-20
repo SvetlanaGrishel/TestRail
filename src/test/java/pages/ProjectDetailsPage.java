@@ -28,9 +28,4 @@ public class ProjectDetailsPage extends BasePage {
         driver.findElement(VIEW_ALL_TEST_CASE_LINK).click();
         return new TestCasesOverviewPage(driver);
     }
-
-    @Step("Check that 'Project Details' page is opened")
-    public ProjectDetailsPage isProjectDetailsPageOpened() {
-        return null;
-    }
 }

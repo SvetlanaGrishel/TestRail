@@ -24,7 +24,7 @@ public class AddProjectPage extends BasePage {
 
     @Step("Fill the name of the project")
     public AddProjectPage fillProjectName(String projectName) {
-        log.info("Fill the name of the project");
+        log.info("Fill the name of the project: '{}'", projectName);
         driver.findElement(NAME_INPUT).sendKeys(projectName);
         return this;
     }

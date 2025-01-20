@@ -67,6 +67,7 @@ public class TestCaseActionsTest extends BaseTest {
                 .isPageOpened()
                 .openProjectDetailsPage(projectWithTestCases)
                 .clickAddTestCaseLink()
+                .isAddTestCasePageOpened()
                 .fillAddTestCaseForm(testCase, "Log in and openAddProjectPage Homepage");
         assertEquals(TestCaseDetailsPage.getMessageForAddedTestCase(),
                 "Successfully added the new test case. Add another",
@@ -89,6 +90,7 @@ public class TestCaseActionsTest extends BaseTest {
                 .isPageOpened()
                 .openProjectDetailsPage(projectWithTwoTestCases)
                 .clickAddTestCaseLink()
+                .isAddTestCasePageOpened()
                 .fillAddTestCaseForm(testCase2, "Log in with valid credentials and check URL");
         assertEquals(TestCaseDetailsPage.getMessageForAddedTestCase(),
                 "Successfully added the new test case. Add another",
@@ -112,6 +114,7 @@ public class TestCaseActionsTest extends BaseTest {
                 .isPageOpened()
                 .openProjectDetailsPage(projectWithTestCases)
                 .clickViewAllTestCasesLink()
+                .isTestCasesOverviewPageOpened()
                 .openTestCaseDetailsPage()
                 .clickEditIcon()
                 .fillTestCaseTitle(editTestCaseName)
@@ -137,10 +140,13 @@ public class TestCaseActionsTest extends BaseTest {
                 .isPageOpened()
                 .openProjectDetailsPage(projectWithTestCaseToDelete)
                 .clickAddTestCaseLink()
+                .isAddTestCasePageOpened()
                 .fillAddTestCaseForm(testCase3, "Test Case to delete")
                 .clickTestCasesBreadcrumbs()
+                .isTestCasesOverviewPageOpened()
                 .markCheckboxToSelectAllTestCases()
                 .clickDeleteButtonForTestCases()
+                .isDeleteTestCaseModalOpened()
                 .confirmPermanentTestCaseDeletion()
                 .finalConfirmPermanentTestCaseDeletion();
         assertTrue(testCasesOverviewPage.checkIconTestCasesQuantity(), "Quantity of Test Cases is not equal to 0," +
