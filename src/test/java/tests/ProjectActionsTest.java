@@ -17,7 +17,7 @@ public class ProjectActionsTest extends BaseTest {
     private String projectNameSecond = faker.company().name();
     private String projectNameThird = faker.company().name();
     private static final String projectNameDeletedProject = "DELETE";
-    private static final String editProjectName = "EDITED_name_";
+    private static final String editProjectName = "EDITED_NAME_";
     private static final String cancelDeleteProjectName = "Cancel deleting project";
 
     SoftAssert softAssert = new SoftAssert();
