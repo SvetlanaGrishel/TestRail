@@ -27,7 +27,7 @@ public class ProjectsOverviewPage extends BasePage {
 
     @Step("Check that the created project is present on 'Projects' page")
     public boolean isProjectFound(String projectTitle) {
-        log.info("Check that the project is present on 'Projects' page");
+        log.info("Check that the project is present on 'Projects' page: '{}'", projectTitle);
         List<WebElement> projectTitles = driver.findElements(PROJECT_NAME_PATTERN);
         boolean isProjectFound = false;
         for (WebElement nameProject : projectTitles) {
@@ -40,9 +40,10 @@ public class ProjectsOverviewPage extends BasePage {
     }
 
     @Step("Open 'Edit' project page")
-    public void openEditProjectPage() {
+    public AddProjectPage openEditProjectPage() {
         log.info("Open 'Edit' project page");
         driver.findElement(PROJECT_NAME_PATTERN).click();
+        return new AddProjectPage(driver);
     }
 
     @Step("Check message about successfully updated project")
@@ -53,8 +54,7 @@ public class ProjectsOverviewPage extends BasePage {
 
     @Step("Click 'X' icon for project to delete")
     public DeleteProjectModal clickIconToDeleteProject(String projectName) {
-        log.info("Click 'X' icon for project to delete");
-        //driver.findElement(PROJECT_NAME_PATTERN).click();
+        log.info("Click 'X' icon for project to delete: '{}'", projectName);
         By deleteProjectName = By.xpath(String.format(DELETE_PROJECT_PATTERN, projectName));
         driver.findElement(deleteProjectName).click();
         return new DeleteProjectModal(driver);
@@ -66,15 +66,13 @@ public class ProjectsOverviewPage extends BasePage {
         return driver.findElement(SUCCESS_MESSAGE_DELETED_PROJECT).getText();
     }
 
-    @Override
     @Step("Open 'Projects' page")
-    public ProjectsOverviewPage open() {
+    public ProjectsOverviewPage openProjectsOverviewPage() {
         log.info("Open 'Projects' page");
         driver.get(PROJECTS_PAGE_URL);
         return this;
     }
 
-    @Override
     @Step("Check that 'Projects' page is opened")
     public ProjectsOverviewPage isPageOpened() {
         try {

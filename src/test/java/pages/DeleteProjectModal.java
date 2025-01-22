@@ -22,28 +22,23 @@ public class DeleteProjectModal extends BasePage {
     }
 
     @Step("Confirm project deletion on 'Confirmation' modal")
-    public void confirmProjectDeletion() {
+    public DeleteProjectModal confirmProjectDeletion() {
         log.info("Confirm project deletion on 'Confirmation' modal");
         driver.findElement(CHECKBOX_DELETE_PROJECT_MODAL).click();
         driver.findElement(YES_BUTTON_DELETE_PROJECT_MODAL).click();
+        return this;
     }
 
     @Step("Close 'Confirmation' modal for project deleting")
-    public void notConfirmProjectDeletion() {
+    public DeleteProjectModal notConfirmProjectDeletion() {
         log.info("Close 'Confirmation' modal for project deleting");
         driver.findElement(CHECKBOX_DELETE_PROJECT_MODAL).click();
         driver.findElement(CANCEL_BUTTON_DELETE_PROJECT_MODAL).click();
+        return this;
     }
 
-    @Override
-    @Step("Open the 'Confirmation' modal for project deleting")
-    public DeleteProjectModal open() {
-        return null;
-    }
-
-    @Override
     @Step("Check that 'Confirmation' modal for project deleting is opened")
-    public DeleteProjectModal isPageOpened() {
+    public DeleteProjectModal isDeleteProjectModalOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_PROJECT_MODAL_TITLE));
         } catch (TimeoutException e) {

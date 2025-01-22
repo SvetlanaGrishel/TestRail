@@ -15,7 +15,8 @@ public class ConfigureVariablePage extends BasePage {
     Faker faker = new Faker();
 
     private static final By OK_BUTTON = By.id("userFieldSubmit");
-    private static final By ADD_USER_VARIABLE_LINK = By.id("addConfig");
+    private static final By VARIABLE_TAB = By.id("users-fields-fields");
+    private static final By ADD_USER_VARIABLE_LINK = By.xpath("//*[@id='addConfig']/p/a");
     private static final By TITLE_CONFIGURE_VARIABLE = By.id("ui-dialog-title-userFieldDialog");
 
     @Step("Fill variable information")
@@ -34,10 +35,11 @@ public class ConfigureVariablePage extends BasePage {
     }
 
     @Step("Open 'Variables' tab")
-    public void clickTabVariables() {
+    public ConfigureVariablePage clickTabVariables() {
         log.info("Open 'Variables' tab");
-        driver.findElement(By.id("users-fields-fields")).click();
-        driver.findElement(By.xpath("//*[@id='addConfig']/p/a")).click();
+        driver.findElement(VARIABLE_TAB).click();
+        driver.findElement(ADD_USER_VARIABLE_LINK).click();
+        return this;
     }
 
     @Step("Click 'OK' button to save the variable")
@@ -47,17 +49,8 @@ public class ConfigureVariablePage extends BasePage {
         return this;
     }
 
-    @Override
-    @Step("Open 'Configure UserVariable' modal")
-    public ConfigureVariablePage open() {
-        log.info("Open 'Configure UserVariable' modal");
-        driver.findElement(ADD_USER_VARIABLE_LINK).click();
-        return this;
-    }
-
-    @Override
     @Step("Check that the 'Configure UserVariable' modal is opened")
-    public ConfigureVariablePage isPageOpened() {
+    public ConfigureVariablePage isConfigureVariablePageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_CONFIGURE_VARIABLE));
         } catch (TimeoutException e) {

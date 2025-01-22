@@ -43,17 +43,15 @@ public class LoginPage extends BasePage {
         return driver.findElement(GENERAL_LOGIN_ERROR_MESSAGE).getText();
     }
 
-    @Override
     @Step("Open 'Login page'")
-    public LoginPage open() {
+    public LoginPage openLoginPage() {
         log.info("Open 'Login' page in TestRail");
         driver.get(BASE_TESTRAIL_URL);
         return this;
     }
 
-    @Override
     @Step("Check that 'Login' page is opened")
-    public LoginPage isPageOpened() {
+    public LoginPage isLoginPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
         } catch (TimeoutException e) {

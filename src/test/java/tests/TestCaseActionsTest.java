@@ -2,7 +2,6 @@ package tests;
 
 import dto.TestCase;
 import io.qameta.allure.*;
-import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import pages.AddTestCasePage;
 import pages.TestCaseDetailsPage;
@@ -11,7 +10,6 @@ import tests.base.BaseTest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-@Log4j2
 public class TestCaseActionsTest extends BaseTest {
 
     private static final String projectWithTestCases = "Project with test cases";
@@ -61,15 +59,16 @@ public class TestCaseActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkCreatingProjectWithTestCase() {
         loginStep.loginStep();
-        addProjectPage.open()
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(projectWithTestCases)
+                .clickAddProjectButton();
+        homepage.openHomepage()
                 .isPageOpened()
-                .fillProjectName(projectWithTestCases);
-        addProjectPage.clickAddProjectButton();
-        homepage.open()
-                .isPageOpened();
-        homepage.openProjectDetailsPage(projectWithTestCases);
-        projectDetailsPage.clickAddTestCaseLink();
-        addTestCasePage.fillAddTestCaseForm(testCase, "Log in and open Homepage");
+                .openProjectDetailsPage(projectWithTestCases)
+                .clickAddTestCaseLink()
+                .isAddTestCasePageOpened()
+                .fillAddTestCaseForm(testCase, "Log in and openAddProjectPage Homepage");
         assertEquals(TestCaseDetailsPage.getMessageForAddedTestCase(),
                 "Successfully added the new test case. Add another",
                 "FAIL checkCreatingProjectWithTestCase test");
@@ -83,20 +82,21 @@ public class TestCaseActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkAddAnotherLinkAndValidationForRequiredField() {
         loginStep.loginStep();
-        addProjectPage.open()
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(projectWithTwoTestCases)
+                .clickAddProjectButton();
+        homepage.openHomepage()
                 .isPageOpened()
-                .fillProjectName(projectWithTwoTestCases);
-        addProjectPage.clickAddProjectButton();
-        homepage.open()
-                .isPageOpened()
-                .openProjectDetailsPage(projectWithTwoTestCases);
-        projectDetailsPage.clickAddTestCaseLink();
-        addTestCasePage.fillAddTestCaseForm(testCase2, "Log in with valid credentials and check URL");
+                .openProjectDetailsPage(projectWithTwoTestCases)
+                .clickAddTestCaseLink()
+                .isAddTestCasePageOpened()
+                .fillAddTestCaseForm(testCase2, "Log in with valid credentials and check URL");
         assertEquals(TestCaseDetailsPage.getMessageForAddedTestCase(),
                 "Successfully added the new test case. Add another",
                 "FAIL checkAddAnotherLinkAndValidationForRequiredField test");
-        testCaseDetailsPage.clickAddAnotherLink();
-        addTestCasePage.fillAddTestCaseForm(testCase3, "");
+        testCaseDetailsPage.clickAddAnotherLink()
+                .fillAddTestCaseForm(testCase3, "");
         assertEquals(AddTestCasePage.getMessageAboutRequiredField(),
                 "Field Title is a required field.",
                 "FAIL checkAddAnotherLinkAndValidationForRequiredField test");
@@ -110,14 +110,15 @@ public class TestCaseActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkEditingTitleTestCase() {
         loginStep.loginStep();
-        homepage.open()
-                .isPageOpened();
-        homepage.openProjectDetailsPage(projectWithTestCases);
-        projectDetailsPage.clickViewAllTestCasesLink();
-        testCasesOverviewPage.openTestCaseDetailsPage();
-        testCaseDetailsPage.clickEditIcon();
-        addTestCasePage.fillTestCaseTitle(editTestCaseName);
-        addTestCasePage.clickSaveTestCase();
+        homepage.openHomepage()
+                .isPageOpened()
+                .openProjectDetailsPage(projectWithTestCases)
+                .clickViewAllTestCasesLink()
+                .isTestCasesOverviewPageOpened()
+                .openTestCaseDetailsPage()
+                .clickEditIcon()
+                .fillTestCaseTitle(editTestCaseName)
+                .clickSaveTestCase();
         assertEquals(TestCaseDetailsPage.getMessageForUpdatedTestCase(),
                 "Successfully updated the test case.",
                 "FAIL checkEditingTitleTestCase");
@@ -131,20 +132,23 @@ public class TestCaseActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkCreatingProjectWithTestCaseAndDeleteTestCase() {
         loginStep.loginStep();
-        addProjectPage.open()
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(projectWithTestCaseToDelete)
+                .clickAddProjectButton();
+        homepage.openHomepage()
                 .isPageOpened()
-                .fillProjectName(projectWithTestCaseToDelete);
-        addProjectPage.clickAddProjectButton();
-        homepage.open()
-                .isPageOpened();
-        homepage.openProjectDetailsPage(projectWithTestCaseToDelete);
-        projectDetailsPage.clickAddTestCaseLink();
-        addTestCasePage.fillAddTestCaseForm(testCase3, "Test Case to delete");
-        testCaseDetailsPage.clickTestCasesBreadcrumbs();
-        testCasesOverviewPage.markCheckboxToSelectAllTestCases();
-        testCasesOverviewPage.clickDeleteButtonForTestCases();
-        deleteTestCaseModal.confirmPermanentTestCaseDeletion();
-        deleteTestCaseModal.finalConfirmPermanentTestCaseDeletion();
+                .openProjectDetailsPage(projectWithTestCaseToDelete)
+                .clickAddTestCaseLink()
+                .isAddTestCasePageOpened()
+                .fillAddTestCaseForm(testCase3, "Test Case to delete")
+                .clickTestCasesBreadcrumbs()
+                .isTestCasesOverviewPageOpened()
+                .markCheckboxToSelectAllTestCases()
+                .clickDeleteButtonForTestCases()
+                .isDeleteTestCaseModalOpened()
+                .confirmPermanentTestCaseDeletion()
+                .finalConfirmPermanentTestCaseDeletion();
         assertTrue(testCasesOverviewPage.checkIconTestCasesQuantity(), "Quantity of Test Cases is not equal to 0," +
                 "FAIL checkCreatingProjectWithTestCaseAndDeleteTestCase test");
     }

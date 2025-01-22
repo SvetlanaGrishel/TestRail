@@ -2,7 +2,6 @@ package tests;
 
 import com.github.javafaker.Faker;
 import io.qameta.allure.*;
-import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.base.BaseTest;
@@ -10,7 +9,6 @@ import tests.base.BaseTest;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-@Log4j2
 public class ProjectActionsTest extends BaseTest {
 
     Faker faker = new Faker();
@@ -32,11 +30,12 @@ public class ProjectActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkCreatingFirstProjectInTestrail() {
         loginStep.loginStep();
-        addProjectPage.open()
-                .isPageOpened()
-                .fillProjectName(projectNameFirst);
-        addProjectPage.clickAddProjectButton();
-        openProjectsOverviewStep.openProjectsOverviewStep();
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(projectNameFirst)
+                .clickAddProjectButton()
+                .openProjectsOverviewPage()
+                .isPageOpened();
         assertTrue(projectsOverviewPage.isProjectFound(projectNameFirst), "Project {projectNameFirst} not " +
                 "found on 'Projects' page");
     }
@@ -48,10 +47,10 @@ public class ProjectActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkAddingProjectWithNameOnly() {
         loginStep.loginStep();
-        addProjectPage.open()
-                .isPageOpened()
-                .fillProjectName(projectNameSecond);
-        addProjectPage.clickAddProjectButton();
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(projectNameSecond)
+                .clickAddProjectButton();
         softAssert.assertEquals(addProjectPage.getMessageForCreatedProject(),
                 "Successfully added the new project.",
                 "FAIL checkAddingProjectWithNameOnly test");
@@ -68,12 +67,12 @@ public class ProjectActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkAddingProjectWithVariables() {
         loginStep.loginStep();
-        addProjectPage.open()
-                .isPageOpened();
-        variableStep.createVariable();
-        addProjectPage.clickProjectTab();
-        addProjectPage.fillProjectName(projectNameThird);
-        addProjectPage.clickAddProjectButton();
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened();
+        variableStep.createVariable()
+                .clickProjectTab()
+                .fillProjectName(projectNameThird)
+                .clickAddProjectButton();
         softAssert.assertEquals(addProjectPage.getMessageForCreatedProject(),
                 "Successfully added the new project.",
                 "FAIL checkAddingProjectWithVariables test");
@@ -90,10 +89,11 @@ public class ProjectActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkEditProjectName() {
         loginStep.loginStep();
-        openProjectsOverviewStep.openProjectsOverviewStep();
-        projectsOverviewPage.openEditProjectPage();
-        addProjectPage.fillProjectName(editProjectName);
-        addProjectPage.clickAddProjectButton();
+        projectsOverviewPage.openProjectsOverviewPage()
+                .isPageOpened()
+                .openEditProjectPage()
+                .fillProjectName(editProjectName)
+                .clickAddProjectButton();
         assertEquals(projectsOverviewPage.getMessageForUpdatedProject(),
                 "Successfully updated the project.",
                 "FAIL checkEditProjectName test");
@@ -107,14 +107,16 @@ public class ProjectActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkCancelingProjectDeleting() {
         loginStep.loginStep();
-        openProjectsOverviewStep.openProjectsOverviewStep();
-        addProjectPage.open()
+        projectsOverviewPage.openProjectsOverviewPage()
+                .isPageOpened();
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(cancelDeleteProjectName)
+                .clickAddProjectButton()
+                .openProjectsOverviewPage()
                 .isPageOpened()
-                .fillProjectName(cancelDeleteProjectName);
-        addProjectPage.clickAddProjectButton();
-        openProjectsOverviewStep.openProjectsOverviewStep();
-        projectsOverviewPage.clickIconToDeleteProject(cancelDeleteProjectName);
-        deleteProjectModal.notConfirmProjectDeletion();
+                .clickIconToDeleteProject(cancelDeleteProjectName)
+                .notConfirmProjectDeletion();
         assertTrue(projectsOverviewPage.isProjectFound(cancelDeleteProjectName), "Project {projectNameFirst} not " +
                 "found on 'Projects' page");
     }
@@ -127,14 +129,17 @@ public class ProjectActionsTest extends BaseTest {
     @Owner("Svetlana Grishel")
     public void checkProjectDeleting() {
         loginStep.loginStep();
-        openProjectsOverviewStep.openProjectsOverviewStep();
-        addProjectPage.open()
+        projectsOverviewPage.openProjectsOverviewPage()
+                .isPageOpened();
+        addProjectPage.openAddProjectPage()
+                .isAddProjectPageOpened()
+                .fillProjectName(projectNameDeletedProject)
+                .clickAddProjectButton()
+                .openProjectsOverviewPage()
                 .isPageOpened()
-                .fillProjectName(projectNameDeletedProject);
-        addProjectPage.clickAddProjectButton();
-        openProjectsOverviewStep.openProjectsOverviewStep();
-        projectsOverviewPage.clickIconToDeleteProject(projectNameDeletedProject);
-        deleteProjectModal.confirmProjectDeletion();
+                .clickIconToDeleteProject(projectNameDeletedProject)
+                .isDeleteProjectModalOpened()
+                .confirmProjectDeletion();
         assertEquals(projectsOverviewPage.getMessageForDeletedProject(),
                 "Successfully deleted the project.",
                 "FAIL checkProjectDeleting");

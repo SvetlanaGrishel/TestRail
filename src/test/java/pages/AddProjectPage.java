@@ -23,21 +23,24 @@ public class AddProjectPage extends BasePage {
     }
 
     @Step("Fill the name of the project")
-    public void fillProjectName(String projectName) {
-        log.info("Fill the name of the project");
+    public AddProjectPage fillProjectName(String projectName) {
+        log.info("Fill the name of the project: '{}'", projectName);
         driver.findElement(NAME_INPUT).sendKeys(projectName);
+        return this;
     }
 
     @Step("Click 'Add Project' button")
-    public void clickAddProjectButton() {
+    public ProjectsOverviewPage clickAddProjectButton() {
         log.info("Click 'Add Project' button");
         driver.findElement(ADD_PROJECT_BUTTON).click();
+        return new ProjectsOverviewPage(driver);
     }
 
     @Step("Click 'Project' tab")
-    public void clickProjectTab() {
+    public AddProjectPage clickProjectTab() {
         log.info("Click 'Project' tab");
         driver.findElement(PROJECT_TAB).click();
+        return this;
     }
 
     @Step("Check message about successfully created project")
@@ -46,17 +49,15 @@ public class AddProjectPage extends BasePage {
         return driver.findElement(SUCCESS_MESSAGE_CREATED_PROJECT).getText();
     }
 
-    @Override
     @Step("Open 'Add Project' page")
-    public AddProjectPage open() {
+    public AddProjectPage openAddProjectPage() {
         log.info("Open 'Add Project' page");
         driver.get(BASE_ADD_PROJECT_URL);
         return this;
     }
 
-    @Override
     @Step("Check that 'Add Project' page is opened")
-    public AddProjectPage isPageOpened() {
+    public AddProjectPage isAddProjectPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_ADD_PROJECT_PAGE));
         } catch (TimeoutException e) {

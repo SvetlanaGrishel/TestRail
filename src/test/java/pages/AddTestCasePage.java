@@ -26,7 +26,7 @@ public class AddTestCasePage extends BasePage {
     }
 
     @Step("Fill all fields on 'Add Test Case' form")
-    public AddTestCasePage fillAddTestCaseForm(TestCase testCase, String titleTestCase) {
+    public TestCaseDetailsPage fillAddTestCaseForm(TestCase testCase, String titleTestCase) {
         log.info("Fill all fields on 'Add Test Case' form");
         driver.findElement(TITLE_TEST_CASE).sendKeys(titleTestCase);
         new Picklist(driver, "Section").select(testCase.getSectionTestCase());
@@ -38,19 +38,21 @@ public class AddTestCasePage extends BasePage {
         new TextArea(driver, "Steps").write(testCase.getStepsTestCase());
         new TextArea(driver, "Expected Result").write(testCase.getExpectedResultTestCase());
         driver.findElement(ADD_TEST_CASE_BUTTON).click();
-        return this;
+        return new TestCaseDetailsPage(driver);
     }
 
     @Step("Fill title of Test Case only")
-    public void fillTestCaseTitle(String titleTestCase) {
-        log.info("Fill title of Test Case only");
+    public AddTestCasePage fillTestCaseTitle(String titleTestCase) {
+        log.info("Fill title of Test Case only: '{}'", titleTestCase);
         driver.findElement(TITLE_TEST_CASE).sendKeys(titleTestCase);
+        return this;
     }
 
     @Step("Click 'Save Test Case' button")
-    public void clickSaveTestCase() {
+    public AddTestCasePage clickSaveTestCase() {
         log.info("Click 'Save Test Case' button");
         driver.findElement(ADD_TEST_CASE_BUTTON).click();
+        return this;
     }
 
     @Step("Check message about required field for title")
@@ -59,8 +61,7 @@ public class AddTestCasePage extends BasePage {
         return driver.findElement(MESSAGE_ABOUT_REQUIRED_FIELD).getText();
     }
 
-    @Override
-    public AddTestCasePage isPageOpened() {
+    public AddTestCasePage isAddTestCasePageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_ADD_TEST_CASE_PAGE));
         } catch (TimeoutException e) {
@@ -68,10 +69,5 @@ public class AddTestCasePage extends BasePage {
             Assert.fail("'Add Project' page isn't opened");
         }
         return this;
-    }
-
-    @Override
-    public AddTestCasePage open() {
-        return null;
     }
 }
